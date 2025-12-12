@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Scalable React Applications | Borifan Dabasa</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .blog-post {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 12rem 2rem 5rem;
+            background: var(--bg-color);
+        }
+        .blog-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        .blog-title {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+        .blog-meta {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .blog-content {
+            font-size: 1.7rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .blog-content h2 {
+            font-size: 3rem;
+            margin: 4rem 0 2rem;
+            color: var(--main-color);
+        }
+        .blog-content h3 {
+            font-size: 2.4rem;
+            margin: 3rem 0 1.5rem;
+        }
+        .blog-content p {
+            margin: 2rem 0;
+        }
+        .blog-content ul, .blog-content ol {
+            margin: 2rem 0;
+            padding-left: 3rem;
+        }
+        .blog-content li {
+            margin: 1rem 0;
+        }
+        .blog-content code {
+            background: var(--second-bg-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', monospace;
+            color: var(--main-color);
+        }
+        .blog-content pre {
+            background: var(--second-bg-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            overflow-x: auto;
+            margin: 2rem 0;
+            border: 0.2rem solid var(--main-color);
+        }
+        .blog-content pre code {
+            background: none;
+            padding: 0;
+            color: var(--text-color);
+        }
+        .blog-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            color: var(--main-color);
+            font-size: 1.6rem;
+            transition: 0.3s ease;
+        }
+        .blog-back:hover {
+            gap: 1.5rem;
+        }
+        .blog-tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 0.1rem solid rgba(14, 238, 255, 0.2);
+        }
+        .blog-tag {
+            background: rgba(14, 238, 255, 0.1);
+            color: var(--main-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 2rem;
+            font-size: 1.4rem;
+            border: 0.1rem solid var(--main-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">
+            <span class="logo-bracket">&lt;</span>
+            <span class="logo-text">B</span>
+            <span class="logo-bracket">/&gt;</span>
+        </a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <i class='bx bx-moon'></i>
+        </button>
+    </header>
+
+    <article class="blog-post">
+        <a href="index.html#blog" class="blog-back">
+            <i class='bx bx-arrow-back'></i> Back to Portfolio
+        </a>
+
+        <div class="blog-header">
+            <h1 class="blog-title">Building Scalable React Applications</h1>
+            <div class="blog-meta">
+                <span><i class='bx bx-user'></i> Borifan Dabasa</span>
+                <span><i class='bx bx-calendar'></i> January 2025</span>
+                <span><i class='bx bx-time'></i> 8 min read</span>
+            </div>
+        </div>
+
+        <div class="blog-content">
+            <p>As a MERN stack developer who's built multiple production applications, I've learned that writing React code is easy—writing scalable React code is an art. Today, I'm sharing the architecture patterns and best practices I use in every project.</p>
+
+            <h2>The Problem with "Just Start Coding"</h2>
+            <p>When I built my first React app, I threw everything into components without thinking about structure. Fast forward three months, and I was drowning in prop drilling, duplicate logic, and components that did way too much.</p>
+            <p>Sound familiar?</p>
+
+            <h2>1. Folder Structure That Scales</h2>
+            <p>Here's the structure I use for all my React projects now:</p>
+            <pre><code>src/
+├── components/
+│   ├── common/          # Reusable UI components
+│   ├── layout/          # Layout components
+│   └── features/        # Feature-specific components
+├── hooks/               # Custom hooks
+├── context/             # Context providers
+├── services/            # API calls
+├── utils/               # Helper functions
+├── constants/           # Constants and configs
+└── pages/               # Page components</code></pre>
+            <p><strong>Why this works:</strong> Each folder has a single responsibility. When I need to find something, I know exactly where to look.</p>
+
+            <h2>2. Component Composition Over Complexity</h2>
+            <p>I learned this the hard way. Here's a component from my early days:</p>
+            <pre><code>// ❌ Bad: God component doing everything
+function UserDashboard() {
+  const [user, setUser] = useState(null);
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+  // 200 lines of logic...
+  
+  return (
+    &lt;div&gt;
+      {/* 300 lines of JSX */}
+    &lt;/div&gt;
+  );
+}</code></pre>
+
+            <p>Now I break it down:</p>
+            <pre><code>// ✅ Good: Composed components
+function UserDashboard() {
+  return (
+    &lt;DashboardLayout&gt;
+      &lt;UserProfile /&gt;
+      &lt;UserStats /&gt;
+      &lt;UserPosts /&gt;
+    &lt;/DashboardLayout&gt;
+  );
+}</code></pre>
+            <p><strong>Rule of thumb:</strong> If your component is over 150 lines, it's probably doing too much.</p>
+
+            <h2>3. Custom Hooks for Logic Reuse</h2>
+            <p>Custom hooks changed my life. Instead of copying logic between components, I extract it:</p>
+            <pre><code>// hooks/useAuth.js
+export function useAuth() {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(setUser);
+    setLoading(false);
+    return unsubscribe;
+  }, []);
+
+  return { user, loading };
+}</code></pre>
+
+            <p>I use custom hooks for:</p>
+            <ul>
+                <li>API calls (<code>useFetch</code>, <code>useApi</code>)</li>
+                <li>Form handling (<code>useForm</code>)</li>
+                <li>Local storage (<code>useLocalStorage</code>)</li>
+                <li>Debouncing (<code>useDebounce</code>)</li>
+            </ul>
+
+            <h2>4. State Management: Keep It Simple</h2>
+            <p>I see developers reaching for Redux immediately. Here's my approach:</p>
+            <ol>
+                <li><strong>Local state</strong> for component-specific data</li>
+                <li><strong>Context</strong> for app-wide data (theme, auth)</li>
+                <li><strong>Redux/Zustand</strong> only when Context becomes messy</li>
+            </ol>
+            <p>For my e-commerce project, I used Context for cart and auth. That's it. No Redux needed.</p>
+
+            <h2>5. Performance Optimization</h2>
+            <p>Three techniques I use in every project:</p>
+
+            <h3>Code Splitting</h3>
+            <pre><code>const Dashboard = lazy(() => import('./pages/Dashboard'));
+
+function App() {
+  return (
+    &lt;Suspense fallback={&lt;Loading /&gt;}&gt;
+      &lt;Dashboard /&gt;
+    &lt;/Suspense&gt;
+  );
+}</code></pre>
+
+            <h3>Memoization</h3>
+            <pre><code>const ExpensiveComponent = memo(({ data }) => {
+  return &lt;div&gt;{/* Heavy computation */}&lt;/div&gt;;
+});</code></pre>
+
+            <h2>Key Takeaways</h2>
+            <ol>
+                <li><strong>Structure matters</strong> - Organize by feature, not file type</li>
+                <li><strong>Compose, don't complicate</strong> - Small, focused components</li>
+                <li><strong>Extract logic</strong> - Custom hooks are your friend</li>
+                <li><strong>Optimize smartly</strong> - Measure before optimizing</li>
+                <li><strong>Plan for errors</strong> - Error boundaries save production</li>
+            </ol>
+
+            <p>Want to see these patterns in action? Check out my projects on <a href="https://github.com/Borifan02" target="_blank" style="color: var(--main-color);">GitHub</a>.</p>
+
+            <div class="blog-tags">
+                <span class="blog-tag">#React</span>
+                <span class="blog-tag">#WebDevelopment</span>
+                <span class="blog-tag">#JavaScript</span>
+                <span class="blog-tag">#Frontend</span>
+                <span class="blog-tag">#MERN</span>
+            </div>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-text">
+                <p>&copy; 2024 Borifan Dabasa. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

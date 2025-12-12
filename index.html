@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="Borifan Dabasa - Full Stack Developer specializing in MERN Stack, UI/UX Design, and Video Editing. Building scalable web applications with modern technologies.">
+    <meta name="keywords" content="Full Stack Developer, MERN Stack, React, Node.js, Web Development, UI/UX Design">
+    <meta name="author" content="Borifan Dabasa">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:title" content="Borifan Dabasa | Full Stack Developer & MERN Stack Specialist">
+    <meta property="og:description" content="Full Stack Developer specializing in MERN Stack. Building scalable web applications with React, Node.js, MongoDB, and Express.">
+    <meta property="og:image" content="https://yourdomain.com/image/portfolio-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourdomain.com/">
+    <meta property="twitter:title" content="Borifan Dabasa | Full Stack Developer">
+    <meta property="twitter:description" content="Full Stack Developer specializing in MERN Stack. Building scalable web applications.">
+    <meta property="twitter:image" content="https://yourdomain.com/image/portfolio-preview.jpg">
+    
+    <title>Borifan Dabasa | Full Stack Developer & MERN Stack Specialist</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7DN1ZLFDQT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7DN1ZLFDQT');
+    </script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div id="preloader">
+        <div class="loader">
+            <div class="loader-inner">
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+            </div>
+            <div class="loader-text">BORIFAN</div>
+        </div>
+    </div>
+
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <a href="#" class="logo">
+            <span class="logo-bracket">&lt;</span>
+            <span class="logo-text">B</span>
+            <span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <div class="header-right">
+            <!-- Theme Toggle -->
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class='bx bx-moon'></i>
+            </button>
+
+            <!-- Hamburger Button for Mobile -->
+            <button id="menu-icon" type="button" aria-expanded="false" aria-controls="primary-navigation"
+                aria-label="Open menu">
+                <i class="bx bx-menu"></i>
+            </button>
+
+            <!-- Navigation -->
+            <nav id="primary-navigation" class="navbar" role="navigation" aria-label="Primary">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#portfolio">Projects</a>
+                <a href="#certifications">Certificates</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+
+        <!-- Off-canvas backdrop for mobile -->
+        <div id="nav-backdrop" class="nav-backdrop" hidden aria-hidden="true"></div>
+    </header>
+
+    <!-- Home Section -->
+    <section class="home" id="home">
+        <div class="home-content">
+            <h3>Hello, I'm</h3>
+            <h1>Borifan Dabasa</h1>
+            <h3>A <span class="multiple-text"></span></h3>
+            <p class="home-description">I'm a Full Stack Developer crafting scalable web solutions with modern technologies. Specialized in MERN Stack development with a keen eye for UI/UX design.</p>
+            <div class="availability-badge">
+                <span class="status-dot"></span>
+                <span>Available for Hire</span>
+            </div>
+
+            <div class="social-media">
+                <a href="https://github.com/Borifan02" target="_blank" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+                <a href="mailto:dabasaborifan@gmail.com" aria-label="Email"><i class='bx bxs-envelope'></i></a>
+                <a href="https://www.instagram.com/borifandabasa" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                <a href="http://www.linkedin.com/in/borifan-dabasa-a5191036b" target="_blank" aria-label="LinkedIn"><i class='bx bxl-linkedin-square'></i></a>
+            </div>
+
+            <div class="btn-group">
+                <a href="#contact" class="btn">Hire Me</a>
+                <a href="assets/CV.pdf" download class="btn btn-secondary">Download CV</a>
+            </div>
+        </div>
+
+        <div class="home-img">
+            <img src="image/computer_engineer-campare-page.png" alt="Borifan Dabasa - Full Stack Developer">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="https://wallpaperaccess.com/full/1385382.jpg" alt="About Borifan Dabasa">
+        </div>
+        <div class="about-content">
+            <h2 class="heading">About <span>Me</span></h2>
+            <h3>Full Stack Developer & Software Engineering Student</h3>
+            <p>
+                I'm a dedicated Software Engineering student at Haramaya University with a passion for building scalable, 
+                high-performance web applications. My expertise spans the entire development lifecycle, from conceptualization 
+                to deployment and maintenance.
+            </p>
+            <p>
+                With proficiency in the <strong>MERN Stack (MongoDB, Express.js, React.js, Node.js)</strong>, I create 
+                responsive, user-centric applications that solve real-world problems. My technical toolkit includes 
+                <strong>Next.js, TypeScript, Tailwind CSS, PHP, MySQL</strong>, and modern development practices.
+            </p>
+            <div class="stats-container">
+                <div class="stat-box">
+                    <h4>10+</h4>
+                    <p>Projects Completed</p>
+                </div>
+                <div class="stat-box">
+                    <h4>2+</h4>
+                    <p>Years Coding</p>
+                </div>
+                <div class="stat-box">
+                    <h4>100%</h4>
+                    <p>Client Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <h2 class="heading">Technical <span>Skills</span></h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3><i class='bx bx-code-block'></i> Frontend</h3>
+                <div class="skill-items">
+                    <div class="skill-item"><span>React.js</span><div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div></div>
+                    <div class="skill-item"><span>Next.js</span><div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div></div>
+                    <div class="skill-item"><span>JavaScript/TypeScript</span><div class="skill-bar"><div class="skill-progress" style="width: 88%"></div></div></div>
+                    <div class="skill-item"><span>HTML5/CSS3</span><div class="skill-bar"><div class="skill-progress" style="width: 95%"></div></div></div>
+                    <div class="skill-item"><span>Tailwind CSS</span><div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div></div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3><i class='bx bx-server'></i> Backend</h3>
+                <div class="skill-items">
+                    <div class="skill-item"><span>Node.js</span><div class="skill-bar"><div class="skill-progress" style="width: 87%"></div></div></div>
+                    <div class="skill-item"><span>Express.js</span><div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div></div>
+                    <div class="skill-item"><span>MongoDB</span><div class="skill-bar"><div class="skill-progress" style="width: 82%"></div></div></div>
+                    <div class="skill-item"><span>MySQL</span><div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div></div>
+                    <div class="skill-item"><span>PHP</span><div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div></div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3><i class='bx bx-git-branch'></i> Tools & Others</h3>
+                <div class="skill-items">
+                    <div class="skill-item"><span>Git/GitHub</span><div class="skill-bar"><div class="skill-progress" style="width: 88%"></div></div></div>
+                    <div class="skill-item"><span>REST APIs</span><div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div></div>
+                    <div class="skill-item"><span>Responsive Design</span><div class="skill-bar"><div class="skill-progress" style="width: 92%"></div></div></div>
+                    <div class="skill-item"><span>UI/UX Design</span><div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div></div>
+                </div>    
+            </div>
+            <div class="skill-category">
+                <h3><i class='bx bx-test-tube'></i> Testing & DevOps</h3>
+                <div class="skill-items">
+                    <div class="skill-item"><span>Jest/React Testing</span><div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div></div>
+                    <div class="skill-item"><span>Docker</span><div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div></div>
+                    <div class="skill-item"><span>Vercel/Netlify</span><div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div></div>
+                    <div class="skill-item"><span>ESLint/Prettier</span><div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div></div>
+                </div>    
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <h2 class="heading">Professional <span>Journey</span></h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Software Engineering Student</h3>
+                    <h4>Haramaya University</h4>
+                    <span class="timeline-date"><i class='bx bx-calendar'></i> 2023 - Present</span>
+                    <p>Pursuing Bachelor's degree in Software Engineering with focus on full-stack development, algorithms, and software architecture.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3> Full Stack Developer</h3>
+                    <h4>Self-Employed</h4>
+                    <span class="timeline-date"><i class='bx bx-calendar'></i> 2024 - Present</span>
+                    <p>Specialized in building scalable web applications using the MERN stack (MongoDB, Express.js, React.js, Node.js). Successfully delivered multiple projects including e-commerce platforms, appointment management systems, and content management solutions. Focused on writing clean, maintainable code with emphasis on responsive design, API integration, and optimal user experience. Collaborated directly with clients to understand requirements, provide technical solutions, and ensure timely project delivery.</p>
+                </div>
+            </div>
+           
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2 class="heading">What I <span>Offer</span></h2>
+        <div class="services-container">
+            <div class="services-box">
+                <i class='bx bx-code-alt'></i>
+                <h3>Full Stack Development</h3>
+                <p>
+                    End-to-end web application development using MERN stack. From database design to responsive UI, 
+                    I deliver scalable solutions with clean code, RESTful APIs, authentication, and deployment.
+                </p>
+                <ul class="service-features">
+                    <li><i class='bx bx-check'></i> Custom Web Applications</li>
+                    <li><i class='bx bx-check'></i> API Development & Integration</li>
+                    <li><i class='bx bx-check'></i> Database Design & Optimization</li>
+                    <li><i class='bx bx-check'></i> Cloud Deployment (Vercel, Netlify)</li>
+                </ul>
+            </div>
+            <div class="services-box">
+                <i class='bx bx-palette'></i>
+                <h3>UI/UX Design</h3>
+                <p>
+                    User-centered design solutions that combine aesthetics with functionality. Creating intuitive 
+                    interfaces that enhance user engagement and drive conversions.
+                </p>
+                <ul class="service-features">
+                    <li><i class='bx bx-check'></i> Responsive Web Design</li>
+                    <li><i class='bx bx-check'></i> Wireframing & Prototyping</li>
+                    <li><i class='bx bx-check'></i> Brand Identity Design</li>
+                    <li><i class='bx bx-check'></i> Figma Design</li>
+                </ul>
+            </div>
+           
+        </div>
+    </section>
+
+   
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <h2 class="heading">Featured <span>Projects</span></h2>
+        <div class="portfolio-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="react">React</button>
+            <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+            <button class="filter-btn" data-filter="frontend">Frontend</button>
+        </div>
+        <div class="portfolio-container">
+            <div class="portfolio-box" data-category="react fullstack">
+                <img src="image/nubelson-fernandes--Xqckh_XVU4-unsplash.jpg" alt="E-Commerce Platform">
+                <div class="portfolio-layer">
+                    <h4>E-Commerce Platform</h4>
+                    <p>Full-featured online shopping platform with cart management, payment integration, and admin dashboard.</p>
+                    <div class="project-metrics">
+                        <span><i class='bx bx-trending-up'></i> 50+ Products</span>
+                        <span><i class='bx bx-code-alt'></i> 5K+ Lines</span>
+                    </div>
+                    <div class="tech-stack">
+                        <span>React</span>
+                        <span>Node.js</span>
+                        <span>MongoDB</span>
+                        <span>Express</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Borifan02/E_commerce_website" target="_blank" rel="noopener noreferrer" aria-label="View code"><i class='bx bxl-github'></i></a>
+                        <a href="case-study-ecommerce.html" aria-label="Case study"><i class='bx bx-book-open'></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-box" data-category="react frontend">
+                <img src="image/appointment.jpg" alt="Appointment Management System">
+                <div class="portfolio-layer">
+                    <h4>Appointment Management System</h4>
+                    <p>Comprehensive booking system with real-time availability, email notifications, and calendar integration.</p>
+                    <div class="tech-stack">
+                        <span>React</span>
+                        <span>JSX</span>
+                        <span>CSS</span>
+                        
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Borifan02/Appointment-Management-System.git" target="_blank" rel="noopener noreferrer" aria-label="View code"><i class='bx bxl-github'></i></a>
+                        <a href="https://appointment-management-system-flame.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Live demo"><i class='bx bx-link-external'></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-box" data-category="react fullstack">
+                <img src="image/blog.jpg" alt="Professional Portfolio">
+                <div class="portfolio-layer">
+                    <h4>Blog Website</h4>
+                    <p>A modern blog website built with Next.js, featuring a clean UI and fully responsive design.</p>
+                    <div class="project-metrics">
+                        <span><i class='bx bx-rocket'></i> Fast Load</span>
+                        <span><i class='bx bx-mobile'></i> 100% Responsive</span>
+                    </div>
+                    <div class="tech-stack">
+                        <span>TypeScript</span>
+                        <span>CSS3</span>
+                        <span>React js</span>
+                        <span>Responsive</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Borifan02/blog" target="_blank" rel="noopener noreferrer" aria-label="View code"><i class='bx bxl-github'></i></a>
+                        <a href="https://borifan-blog.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Live demo"><i class='bx bx-link-external'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-box" data-category="fullstack frontend">
+                <img src="image/crypto.jpg" alt="Crypto Tracker">
+                <div class="portfolio-layer">
+                    <h4>Crypto Tracker System</h4>
+                   <p>Real-time cryptocurrency tracker with Chart.js visualizations. Features live market data, search/filter, and historical price charts.</p>
+                   <div class="project-metrics">
+                        <span><i class='bx bx-data'></i> Real-time API</span>
+                        <span><i class='bx bx-line-chart'></i> Interactive Charts</span>
+                    </div>
+                    <div class="tech-stack">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>Javascript</span>
+                        <span>Express/Node js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Borifan02/Crypto-tracker" target="_blank" rel="noopener noreferrer" aria-label="View code"><i class='bx bxl-github'></i></a>
+                        <a href="https://crypto-tracker-system.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Live demo"><i class='bx bx-link-external'></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="view-more">
+            <a href="https://github.com/Borifan02?tab=repositories" target="_blank" class="btn">View All Projects <i class='bx bxl-github'></i></a>
+        </div>
+    </section>
+
+    <!-- Blog/Articles Section -->
+    <section class="blog" id="blog">
+        <h2 class="heading">Technical <span>Blog</span></h2>
+        <p class="blog-description">Sharing knowledge and insights about web development, best practices, and technology trends.</p>
+        <div class="blog-container">
+            <div class="blog-card">
+                <div class="blog-icon">
+                    <i class='bx bxl-react'></i>
+                </div>
+                <div class="blog-content">
+                    <h3>Building Scalable React Applications</h3>
+                    <p>Best practices for structuring React apps with performance optimization and clean architecture patterns.</p>
+                    <span class="blog-date"><i class='bx bx-calendar'></i> January 2025</span>
+                    <a href="blog-react.html" class="blog-link">Read More <i class='bx bx-right-arrow-alt'></i></a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-icon">
+                    <i class='bx bxl-nodejs'></i>
+                </div>
+                <div class="blog-content">
+                    <h3>Node.js API Development Guide</h3>
+                    <p>Complete guide to building RESTful APIs with Express.js, MongoDB, and authentication best practices.</p>
+                    <span class="blog-date"><i class='bx bx-calendar'></i> January 2025</span>
+                    <a href="blog-nodejs.html" class="blog-link">Read More <i class='bx bx-right-arrow-alt'></i></a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-icon">
+                    <i class='bx bx-code-curly'></i>
+                </div>
+                <div class="blog-content">
+                    <h3>Full Stack Development Roadmap</h3>
+                    <p>A comprehensive guide for aspiring developers to master the MERN stack and modern web technologies.</p>
+                    <span class="blog-date"><i class='bx bx-calendar'></i> January 2025</span>
+                    <a href="blog-roadmap.html" class="blog-link">Read More <i class='bx bx-right-arrow-alt'></i></a>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="certifications" id="certifications">
+        <h2 class="heading">Certifications & <span>Achievements</span></h2>
+        <div class="cert-container">
+            <div class="cert-card">
+                <div class="cert-image">
+                    <img src="image/image_1.jpg" alt="Certificate 1">
+                </div>
+                <div class="cert-info">
+                    <h3>Become a Fullstack Developer</h3>
+                    <p>Educative</p>
+                    <span class="cert-date">October 14/2025</span>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-image">
+                    <img src="image/image_2.jpg" alt="Certificate 2">
+                </div>
+                <div class="cert-info">
+                    <h3>Programming Fundamentals</h3>
+                    <p>Udacity</p>
+                    <span class="cert-date">August-27/2024</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Soft Skills Section -->
+    <section class="soft-skills" id="soft-skills">
+        <h2 class="heading">Professional <span>Strengths</span></h2>
+        <div class="soft-skills-container">
+            <div class="soft-skill-box">
+                <i class='bx bx-group'></i>
+                <h3>Team Collaboration</h3>
+                <p>Experienced in working with cross-functional teams using Agile methodologies and Git workflows.</p>
+            </div>
+            <div class="soft-skill-box">
+                <i class='bx bx-bulb'></i>
+                <h3>Problem Solving</h3>
+                <p>Strong analytical skills with a systematic approach to debugging and optimizing complex systems.</p>
+            </div>
+            <div class="soft-skill-box">
+                <i class='bx bx-message-dots'></i>
+                <h3>Communication</h3>
+                <p>Clear technical communication with stakeholders, documentation, and code reviews.</p>
+            </div>
+            <div class="soft-skill-box">
+                <i class='bx bx-time-five'></i>
+                <h3>Time Management</h3>
+                <p>Efficient project delivery with prioritization, deadline management, and quality assurance.</p>
+            </div>
+            <div class="soft-skill-box">
+                <i class='bx bx-book-open'></i>
+                <h3>Continuous Learning</h3>
+                <p>Passionate about staying updated with latest technologies and industry best practices.</p>
+            </div>
+            <div class="soft-skill-box">
+                <i class='bx bx-code-block'></i>
+                <h3>Clean Code Advocate</h3>
+                <p>Committed to writing maintainable, well-documented code following SOLID principles.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter" id="newsletter">
+        <div class="newsletter-container">
+            <div class="newsletter-content">
+                <i class='bx bx-envelope'></i>
+                <h2>Stay <span>Updated</span></h2>
+                <p>Subscribe to get notified about new projects, blog posts, and opportunities. Join the community!</p>
+            </div>
+            <form class="newsletter-form" name="newsletter-subscription" id="newsletter-form">
+                <div class="newsletter-input-group">
+                    <input type="email" name="Email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn">Subscribe <i class='bx bx-send'></i></button>
+                </div>
+                <span id="newsletter-msg"></span>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="heading">Get In <span>Touch</span></h2>
+        <p class="contact-description">Have a project in mind or want to collaborate? Let's create something amazing together!</p>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-box">
+                    <i class='bx bxs-envelope'></i>
+                    <div>
+                        <h3>Email</h3>
+                        <p>dabasaborifan@gmail.com</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <i class='bx bxs-phone'></i>
+                    <div>
+                        <h3>Phone</h3>
+                        <p>+251965844287</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <i class='bx bxs-map'></i>
+                    <div>
+                        <h3>Location</h3>
+                        <p>Addis Ababa, Ethiopia (Remote)</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <i class='bx bx-time'></i>
+                    <div>
+                        <h3>Availability</h3>
+                        <p>Open to opportunities</p>
+                    </div>
+                </div>
+            </div>
+            <form name="submit-to-google-sheet" class="contact-form">
+                <div class="input-box">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="Subject" placeholder="Subject" required>
+                    <input type="tel" name="Mobile" placeholder="Phone Number (Optional)">
+                </div>
+                <textarea name="Message" rows="6" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn">Send Message <i class='bx bx-send'></i></button>
+                <span id="msg"></span>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-text">
+                <p>&copy; 2025 Borifan Dabasa. All Rights Reserved.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#portfolio">Projects</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-iconTop">
+                <a href="#home" aria-label="Back to top"><i class='bx bx-up-arrow-alt'></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="script.js"></script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby0BSxcpnnHTKTy2rXwg9vVtO7PDaidp_zNOg1ILij4huGNz40fPdf4HC0jnvDX8xOx/exec';
+        const form = document.forms['submit-to-google-sheet'];
+        const msg = document.getElementById('msg');
+
+        if(form) {
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                    .then(response => {
+                        msg.style.color = "green";
+                        msg.innerHTML = "✅ Message sent successfully!";
+                        setTimeout(() => msg.innerHTML = "", 5000);
+                        form.reset();
+                    })
+                    .catch(error => {
+                        msg.style.color = "red";
+                        msg.innerHTML = "❌ Message failed to send!";
+                        setTimeout(() => msg.innerHTML = "", 5000);
+                        console.error('Error!', error.message);
+                    });
+            });
+        }
+    </script>
+
+</body>
+
+</html>

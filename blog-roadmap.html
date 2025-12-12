@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Stack Development Roadmap | Borifan Dabasa</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .blog-post {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 12rem 2rem 5rem;
+            background: var(--bg-color);
+        }
+        .blog-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        .blog-title {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+        .blog-meta {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .blog-content {
+            font-size: 1.7rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .blog-content h2 {
+            font-size: 3rem;
+            margin: 4rem 0 2rem;
+            color: var(--main-color);
+        }
+        .blog-content h3 {
+            font-size: 2.4rem;
+            margin: 3rem 0 1.5rem;
+        }
+        .blog-content p {
+            margin: 2rem 0;
+        }
+        .blog-content ul, .blog-content ol {
+            margin: 2rem 0;
+            padding-left: 3rem;
+        }
+        .blog-content li {
+            margin: 1rem 0;
+        }
+        .blog-content code {
+            background: var(--second-bg-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', monospace;
+            color: var(--main-color);
+        }
+        .blog-content pre {
+            background: var(--second-bg-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            overflow-x: auto;
+            margin: 2rem 0;
+            border: 0.2rem solid var(--main-color);
+        }
+        .blog-content pre code {
+            background: none;
+            padding: 0;
+            color: var(--text-color);
+        }
+        .blog-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            color: var(--main-color);
+            font-size: 1.6rem;
+            transition: 0.3s ease;
+        }
+        .blog-back:hover {
+            gap: 1.5rem;
+        }
+        .blog-tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 0.1rem solid rgba(14, 238, 255, 0.2);
+        }
+        .blog-tag {
+            background: rgba(14, 238, 255, 0.1);
+            color: var(--main-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 2rem;
+            font-size: 1.4rem;
+            border: 0.1rem solid var(--main-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">
+            <span class="logo-bracket">&lt;</span>
+            <span class="logo-text">B</span>
+            <span class="logo-bracket">/&gt;</span>
+        </a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <i class='bx bx-moon'></i>
+        </button>
+    </header>
+
+    <article class="blog-post">
+        <a href="index.html#blog" class="blog-back">
+            <i class='bx bx-arrow-back'></i> Back to Portfolio
+        </a>
+
+        <div class="blog-header">
+            <h1 class="blog-title">Full Stack Development Roadmap: My Journey to MERN Stack</h1>
+            <div class="blog-meta">
+                <span><i class='bx bx-user'></i> Borifan Dabasa</span>
+                <span><i class='bx bx-calendar'></i> January 2025</span>
+                <span><i class='bx bx-time'></i> 12 min read</span>
+            </div>
+        </div>
+
+        <div class="blog-content">
+            <p>Two years ago, I started learning web development with zero coding experience. Today, I'm a Full Stack Developer building production applications with the MERN stack. This is the roadmap I wish I had when I started.</p>
+
+            <h2>My Story</h2>
+            <p>I'm currently studying Software Engineering at Haramaya University while working as a freelance Full Stack Developer. I've built e-commerce platforms, appointment systems, and crypto trackers—all while learning on the job.</p>
+            <p>This roadmap is based on my real experience, not theory.</p>
+
+            <h2>Phase 1: The Foundation (2-3 months)</h2>
+            
+            <h3>HTML & CSS</h3>
+            <p>Start here. No shortcuts.</p>
+            <p><strong>What I learned:</strong></p>
+            <ul>
+                <li>Semantic HTML5 elements</li>
+                <li>CSS Flexbox and Grid</li>
+                <li>Responsive design with media queries</li>
+                <li>CSS animations and transitions</li>
+            </ul>
+
+            <p><strong>Projects I built:</strong></p>
+            <ul>
+                <li>Personal portfolio website</li>
+                <li>Landing pages</li>
+                <li>Clone popular websites (Netflix, Spotify)</li>
+            </ul>
+
+            <h3>JavaScript Fundamentals</h3>
+            <p>This is where it gets real.</p>
+            <pre><code>// Variables and data types
+let name = "Borifan";
+const age = 22;
+
+// Functions
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+// ES6+ features
+const numbers = [1, 2, 3];
+const doubled = numbers.map(n => n * 2);
+
+// Async/Await
+async function fetchData() {
+  const response = await fetch('api/data');
+  const data = await response.json();
+  return data;
+}</code></pre>
+
+            <h2>Phase 2: Frontend Framework - React (2-3 months)</h2>
+            <p>React changed everything for me.</p>
+            <pre><code>// Component
+function Welcome({ name }) {
+  return &lt;h1&gt;Hello, {name}!&lt;/h1&gt;;
+}
+
+// State
+const [count, setCount] = useState(0);
+
+// Effect
+useEffect(() => {
+  document.title = `Count: ${count}`;
+}, [count]);</code></pre>
+
+            <p><strong>Learn in order:</strong></p>
+            <ol>
+                <li>JSX syntax</li>
+                <li>Components (functional)</li>
+                <li>Props and state</li>
+                <li>Hooks (useState, useEffect)</li>
+                <li>Event handling</li>
+                <li>Conditional rendering</li>
+                <li>Lists and keys</li>
+                <li>Forms</li>
+            </ol>
+
+            <h2>Phase 3: Backend - Node.js & Express (2 months)</h2>
+            <p>Time to build APIs.</p>
+            <pre><code>// server.js
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+app.get('/api/users', (req, res) => {
+  res.json({ users: [] });
+});
+
+app.listen(5000, () => {
+  console.log('Server running on port 5000');
+});</code></pre>
+
+            <h2>Phase 4: Database - MongoDB (1-2 months)</h2>
+            <pre><code>// User model
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: { type: String, unique: true },
+  password: String,
+  createdAt: { type: Date, default: Date.now }
+});
+
+const User = mongoose.model('User', userSchema);</code></pre>
+
+            <h2>Phase 5: Full Stack Integration (1-2 months)</h2>
+            <p>Connect everything together.</p>
+            <pre><code>Frontend (React)
+    ↓
+API Calls (Axios/Fetch)
+    ↓
+Backend (Express)
+    ↓
+Database (MongoDB)</code></pre>
+
+            <h2>Real Projects I Built</h2>
+            <ol>
+                <li><strong>E-Commerce Platform</strong> - Full MERN stack with cart, payments</li>
+                <li><strong>Blog Website</strong> - Next.js with TypeScript</li>
+                <li><strong>Crypto Tracker</strong> - Real-time data with Chart.js</li>
+                <li><strong>Appointment System</strong> - React with calendar integration</li>
+            </ol>
+            <p>Check them out: <a href="https://github.com/Borifan02" target="_blank" style="color: var(--main-color);">github.com/Borifan02</a></p>
+
+            <h2>My Tech Stack Today</h2>
+            <p><strong>Frontend:</strong></p>
+            <ul>
+                <li>React.js / Next.js</li>
+                <li>TypeScript</li>
+                <li>Tailwind CSS</li>
+            </ul>
+
+            <p><strong>Backend:</strong></p>
+            <ul>
+                <li>Node.js / Express.js</li>
+                <li>MongoDB / Mongoose</li>
+                <li>JWT Authentication</li>
+            </ul>
+
+            <h2>Tips from My Journey</h2>
+            <ol>
+                <li><strong>Build projects, not tutorials</strong> - I learned more from one real project than 10 tutorials</li>
+                <li><strong>Don't get stuck in tutorial hell</strong> - Watch, code along, then build something different</li>
+                <li><strong>Git from day one</strong> - Commit everything</li>
+                <li><strong>Deploy early</strong> - Use Vercel, Netlify, Heroku</li>
+                <li><strong>Read documentation</strong> - It's your best friend</li>
+                <li><strong>Consistency > Intensity</strong> - Code every day, even 30 minutes</li>
+            </ol>
+
+            <h2>Timeline Reality Check</h2>
+            <p><strong>My actual timeline:</strong></p>
+            <ul>
+                <li>Month 1-3: HTML, CSS, JavaScript</li>
+                <li>Month 4-6: React.js</li>
+                <li>Month 7-8: Node.js, Express</li>
+                <li>Month 9-10: MongoDB, Full Stack projects</li>
+                <li>Month 11-12: TypeScript, Next.js</li>
+                <li>Ongoing: Learning and building</li>
+            </ul>
+
+            <h2>My Advice to Beginners</h2>
+            <p>Start today. Not tomorrow. Not next week. Today.</p>
+            <p>Pick one resource, follow it completely, build projects, and deploy them. That's it.</p>
+            <p>You don't need to know everything. You need to know enough to build something, then learn as you go.</p>
+
+            <div class="blog-tags">
+                <span class="blog-tag">#WebDevelopment</span>
+                <span class="blog-tag">#MERN</span>
+                <span class="blog-tag">#FullStack</span>
+                <span class="blog-tag">#JavaScript</span>
+                <span class="blog-tag">#CareerAdvice</span>
+            </div>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-text">
+                <p>&copy; 2024 Borifan Dabasa. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
