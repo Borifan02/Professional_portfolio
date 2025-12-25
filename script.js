@@ -180,14 +180,8 @@ if (typeof particlesJS !== 'undefined') {
   });
 }
 
-// ========================================
-// 3D PARALLAX MOUSE TRACKING
-// ========================================
-const homeSection = document.querySelector('.home');
-const homeContent = document.querySelector('.home-content');
-const homeImg = document.querySelector('.home-img');
-
-if (homeSection && homeContent && homeImg) {
+// 3D Parallax Mouse Tracking (disabled on mobile)
+if (homeSection && homeContent && homeImg && !isMobile) {
   homeSection.addEventListener('mousemove', (e) => {
     const { clientX, clientY } = e;
     const { offsetWidth, offsetHeight } = homeSection;
@@ -223,13 +217,14 @@ buttons.forEach(btn => {
   });
 });
 
-// ========================================
-// CUSTOM CURSOR
-// ========================================
+// Custom Cursor (disabled on mobile)
 const cursor = document.querySelector('.cursor');
 const cursorFollower = document.querySelector('.cursor-follower');
 
-if (cursor && cursorFollower) {
+// Check if device supports hover (not mobile)
+const isMobile = !window.matchMedia('(hover: hover)').matches;
+
+if (cursor && cursorFollower && !isMobile) {
   let mouseX = 0, mouseY = 0;
   let cursorX = 0, cursorY = 0;
   let followerX = 0, followerY = 0;

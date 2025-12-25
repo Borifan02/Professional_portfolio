@@ -38,6 +38,17 @@ body {
   cursor: none;
 }
 
+/* Disable custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+  .cursor,
+  .cursor-follower {
+    display: none;
+  }
+}
+
 /* Particles Background */
 #particles-js {
   position: fixed;
@@ -1725,48 +1736,134 @@ span {
 @media (max-width: 768px) {
   .home {
     flex-direction: column;
+    text-align: center;
+    padding: 8rem 5% 2rem;
+  }
+  .home-content {
+    max-width: 100%;
   }
   .home-content h1 {
-    font-size: 5rem;
+    font-size: 4.5rem;
+  }
+  .home-content h3 {
+    font-size: 2.8rem;
+  }
+  .home-description {
+    font-size: 1.5rem;
   }
   .home-img img {
-    width: 70vw;
-    margin-top: 4rem;
+    width: 80vw;
+    margin-top: 3rem;
+  }
+  .social-media {
+    justify-content: center;
+    margin: 2rem 0;
+  }
+  .btn-group {
+    justify-content: center;
+    flex-wrap: wrap;
   }
   .about {
     flex-direction: column-reverse;
+    text-align: center;
   }
   .about-img img {
-    width: 70vw;
+    width: 80vw;
   }
   .stats-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .skills-container {
     grid-template-columns: 1fr;
   }
   .portfolio-container {
     grid-template-columns: 1fr;
   }
-
+  .blog-container {
+    grid-template-columns: 1fr;
+  }
+  .cert-container {
+    grid-template-columns: 1fr;
+  }
+  .soft-skills-container {
+    grid-template-columns: 1fr;
+  }
+  .github-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .github-container img,
+  .github-langs img {
+    max-width: 95vw;
+  }
+  .services-container {
+    grid-template-columns: 1fr;
+  }
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+  .features-list {
+    grid-template-columns: 1fr;
+  }
+  .newsletter-input-group {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .newsletter-input-group input {
+    width: 100%;
+  }
+  .newsletter-input-group .btn {
+    width: 100%;
+  }
 }
 
 @media (max-width: 450px) {
   html {
     font-size: 50%;
   }
+  section {
+    padding: 8rem 3% 2rem;
+  }
+  .home-content h1 {
+    font-size: 4rem;
+  }
+  .home-content h3 {
+    font-size: 2.5rem;
+  }
+  .home-description {
+    font-size: 1.4rem;
+  }
+  .availability-badge {
+    font-size: 1.2rem;
+    padding: 0.6rem 1.2rem;
+  }
+  .social-media a {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.8rem;
+  }
+  .btn {
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+  }
   .btn-group {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .heading {
+    font-size: 3.5rem;
+  }
+  .contact-form .input-box {
     flex-direction: column;
   }
   .contact-form .input-box input {
     width: 100%;
   }
-  .newsletter-input-group {
-    flex-direction: column;
-  }
-  .newsletter-input-group .btn {
-    width: 100%;
-  }
   .footer-content {
     flex-direction: column;
     text-align: center;
+    gap: 1.5rem;
   }
   .footer-links {
     flex-direction: column;
@@ -1776,7 +1873,39 @@ span {
   .github-langs img {
     max-width: 100%;
   }
-  .testimonial-container {
-    grid-template-columns: 1fr;
+  .portfolio-filter {
+    gap: 1rem;
+  }
+  .filter-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.3rem;
+  }
+  .tech-stack {
+    gap: 0.5rem;
+  }
+  .tech-stack span {
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+  }
+  .project-metrics {
+    gap: 1rem;
+  }
+  .project-metrics span {
+    font-size: 1rem;
+  }
+  .blog-card {
+    padding: 2rem 1.5rem;
+  }
+  .cert-card {
+    margin: 0 1rem;
+  }
+  .soft-skill-box {
+    padding: 2rem 1.5rem;
+  }
+  .timeline-item {
+    padding-left: 4rem !important;
+  }
+  .timeline-content {
+    padding: 2rem;
   }
 }
