@@ -123,15 +123,51 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// ========================================
-// LOADING SCREEN
-// ========================================
+// Typed.js effect with proper initialization
+function initTyped() {
+  const element = document.querySelector(".multiple-text");
+  if (!element) return;
+  
+  if (typeof Typed !== 'undefined') {
+    new Typed(".multiple-text", {
+      strings: [
+        "Full Stack Developer",
+        "MERN Stack Specialist", 
+        "React.js Expert",
+        "Node.js Developer",
+        "UI/UX Designer",
+      ],
+      typeSpeed: 70,
+      backSpeed: 50,
+      backDelay: 1500,
+      loop: true,
+      showCursor: true,
+      cursorChar: '|',
+    });
+  } else {
+    // Fallback animation
+    const texts = ["Full Stack Developer", "MERN Stack Specialist", "React.js Expert", "Node.js Developer", "UI/UX Designer"];
+    let currentIndex = 0;
+    
+    function changeText() {
+      element.textContent = texts[currentIndex];
+      currentIndex = (currentIndex + 1) % texts.length;
+    }
+    
+    changeText();
+    setInterval(changeText, 2000);
+  }
+}
+
+// Initialize after loading screen
 window.addEventListener('load', () => {
   const preloader = document.getElementById('preloader');
   setTimeout(() => {
     preloader.classList.add('fade-out');
     setTimeout(() => {
       preloader.style.display = 'none';
+      // Initialize Typed.js after loading screen
+      setTimeout(initTyped, 300);
     }, 500);
   }, 2000);
 });
@@ -361,24 +397,7 @@ if (typeof VanillaTilt !== 'undefined') {
   });
 }
 
-// Typed.js effect
-if (document.querySelector(".multiple-text")) {
-  const typed = new Typed(".multiple-text", {
-    strings: [
-      "Full Stack Developer",
-      "MERN Stack Specialist",
-      "React.js Expert",
-      "Node.js Developer",
-      "UI/UX Designer",
-    ],
-    typeSpeed: 70,
-    backSpeed: 50,
-    backDelay: 1500,
-    loop: true,
-    showCursor: true,
-    cursorChar: '|',
-  });
-}
+
 
 // Skill bar animation on scroll
 const skillBars = document.querySelectorAll('.skill-progress');
