@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Case study of E-Commerce Platform built with MERN Stack by Borifan Dabasa">
+    <title>E-Commerce Platform Case Study | Borifan Dabasa</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .case-study {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 12rem 2rem 5rem;
+            background: var(--bg-color);
+        }
+        .case-study-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        .case-study-title {
+            font-size: 4.5rem;
+            margin-bottom: 2rem;
+        }
+        .case-study-meta {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .case-study-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .case-study-section {
+            margin: 5rem 0;
+        }
+        .case-study-section h2 {
+            font-size: 3.5rem;
+            color: var(--main-color);
+            margin-bottom: 2rem;
+        }
+        .case-study-section h3 {
+            font-size: 2.5rem;
+            margin: 3rem 0 1.5rem;
+        }
+        .case-study-section p {
+            font-size: 1.7rem;
+            line-height: 1.8;
+            margin: 1.5rem 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .case-study-section ul, .case-study-section ol {
+            font-size: 1.7rem;
+            line-height: 1.8;
+            margin: 2rem 0;
+            padding-left: 3rem;
+        }
+        .case-study-section li {
+            margin: 1rem 0;
+        }
+        .tech-stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .tech-item {
+            background: var(--second-bg-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 0.2rem solid var(--main-color);
+            text-align: center;
+        }
+        .tech-item i {
+            font-size: 4rem;
+            color: var(--main-color);
+            margin-bottom: 1rem;
+        }
+        .tech-item h4 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .result-card {
+            background: var(--second-bg-color);
+            padding: 3rem 2rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            border: 0.2rem solid var(--bg-color);
+            transition: 0.3s ease;
+        }
+        .result-card:hover {
+            border-color: var(--main-color);
+            transform: translateY(-5px);
+        }
+        .result-number {
+            font-size: 4rem;
+            color: var(--main-color);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .result-label {
+            font-size: 1.6rem;
+        }
+        .challenge-box {
+            background: var(--second-bg-color);
+            padding: 3rem;
+            border-radius: 1.5rem;
+            border-left: 0.5rem solid var(--main-color);
+            margin: 2rem 0;
+        }
+        .solution-box {
+            background: rgba(14, 238, 255, 0.05);
+            padding: 3rem;
+            border-radius: 1.5rem;
+            border-left: 0.5rem solid var(--main-color);
+            margin: 2rem 0;
+        }
+        .code-snippet {
+            background: var(--second-bg-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            overflow-x: auto;
+            margin: 2rem 0;
+            border: 0.2rem solid var(--main-color);
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            color: var(--main-color);
+            font-size: 1.6rem;
+            transition: 0.3s ease;
+        }
+        .back-link:hover {
+            gap: 1.5rem;
+        }
+        .cta-section {
+            background: var(--second-bg-color);
+            padding: 4rem;
+            border-radius: 2rem;
+            text-align: center;
+            margin-top: 5rem;
+        }
+        .cta-section h3 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">
+            <span class="logo-bracket">&lt;</span>
+            <span class="logo-text">B</span>
+            <span class="logo-bracket">/&gt;</span>
+        </a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <i class='bx bx-moon'></i>
+        </button>
+    </header>
+
+    <article class="case-study">
+        <a href="index.html#portfolio" class="back-link">
+            <i class='bx bx-arrow-back'></i> Back to Projects
+        </a>
+
+        <div class="case-study-header">
+            <h1 class="case-study-title">E-Commerce Platform</h1>
+            <div class="case-study-meta">
+                <span><i class='bx bx-calendar'></i> Duration: 3 Months</span>
+                <span><i class='bx bx-code-alt'></i> MERN Stack</span>
+                <span><i class='bx bx-user'></i> Solo Project</span>
+            </div>
+        </div>
+
+        <!-- Overview -->
+        <section class="case-study-section">
+            <h2><i class='bx bx-info-circle'></i> Project Overview</h2>
+            <p>A full-featured e-commerce platform built from scratch using the MERN stack. The platform enables businesses to sell products online with features like cart management, secure payments, order tracking, and an admin dashboard for inventory management.</p>
+        </section>
+
+        <!-- The Challenge -->
+        <section class="case-study-section">
+            <h2><i class='bx bx-error'></i> The Challenge</h2>
+            <div class="challenge-box">
+                <h3>Problem Statement</h3>
+                <p>Small businesses needed an affordable, scalable online store solution that could handle:</p>
+                <ul>
+                    <li>500+ products with multiple categories</li>
+                    <li>Real-time inventory management</li>
+                    <li>Secure payment processing</li>
+                    <li>Mobile-responsive design</li>
+                    <li>Fast page load times</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section class="case-study-section">
+            <h2><i class='bx bx-code-block'></i> Technology Stack</h2>
+            <div class="tech-stack-grid">
+                <div class="tech-item">
+                    <i class='bx bxl-react'></i>
+                    <h4>React.js</h4>
+                    <p>Frontend UI</p>
+                </div>
+                <div class="tech-item">
+                    <i class='bx bxl-nodejs'></i>
+                    <h4>Node.js</h4>
+                    <p>Backend Server</p>
+                </div>
+                <div class="tech-item">
+                    <i class='bx bx-data'></i>
+                    <h4>MongoDB</h4>
+                    <p>Database</p>
+                </div>
+                <div class="tech-item">
+                    <i class='bx bx-server'></i>
+                    <h4>Express.js</h4>
+                    <p>API Framework</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Approach -->
+        <section class="case-study-section">
+            <h2><i class='bx bx-bulb'></i> My Approach</h2>
+            
+            <h3>1. Planning & Architecture</h3>
+            <p>I started by designing the system architecture and database schema:</p>
+            <ul>
+                <li>User authentication with JWT tokens</li>
+                <li>RESTful API design for scalability</li>
+                <li>MongoDB collections: Users, Products, Orders, Cart</li>
+                <li>React Context API for state management</li>
+            </ul>
+
+            <h3>2. Development Process</h3>
+            <p><strong>Phase 1: Backend API (4 weeks)</strong></p>
+            <ul>
+                <li>Built Express.js server with authentication middleware</li>
+                <li>Created CRUD operations for products and orders</li>
+                <li>Implemented secure password hashing with bcrypt</li>
+                <li>Set up MongoDB with Mongoose ODM</li>
+            </ul>
+
+            <p><strong>Phase 2: Frontend Development (5 weeks)</strong></p>
+            <ul>
+                <li>Built responsive UI with React and CSS</li>
+                <li>Implemented shopping cart functionality</li>
+                <li>Created product filtering and search</li>
+                <li>Integrated payment gateway</li>
+            </ul>
+
+            <p><strong>Phase 3: Admin Dashboard (3 weeks)</strong></p>
+            <ul>
+                <li>Product management (add, edit, delete)</li>
+                <li>Order tracking and status updates</li>
+                <li>Sales analytics and reports</li>
+                <li>User management</li>
+            </ul>
+        </section>
+
+        <!-- Key Features -->
+        <section class="case-study-section">
+            <h2><i class='bx bx-star'></i> Key Features Implemented</h2>
+            <div class="solution-box">
+                <h3>Customer Features</h3>
+                <ul>
+                    <li><strong>Product Catalog:</strong> Browse 500+ products with filtering by category, price, rating</li>
+                    <li><strong>Shopping Cart:</strong> Add/remove items, update quantities, save for later</li>
+                    <li><strong>User Accounts:</strong> Registration, login, profile management, order history</li>
+                    <li><strong>Checkout:</strong> Secure payment processing, multiple payment methods</li>
+                    <li><strong>Order Tracking:</strong> Real-time order status updates</li>
+                </ul>
+            </div>
+
+            <div class="solution-box">
+                <h3>Admin Features</h3>
+                <ul>
+                    <li><strong>Dashboard:</strong> Sales overview, revenue charts, top products</li>
+                    <li><strong>Inventory Management:</strong> Add/edit products, manage stock levels</li>
+                    <li><strong>Order Management:</strong> View orders, update status, process refunds</li>
+                    <li><strong>Analytics:</strong> Sales reports, customer insights</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Technical Challenges -->
+        <section class="case-study-section">
+            <h2><i class='bx bx-wrench'></i> Technical Challenges & Solutions</h2>
+            
+            <h3>Challenge 1: Performance with Large Product Catalog</h3>
+            <div class="challenge-box">
+                <p><strong>Problem:</strong> Loading 500+ products caused slow page loads</p>
+                <p><strong>Solution:</strong> Implemented pagination and lazy loading</p>
+                <div class="code-snippet">
+// Pagination implementation
+const limit = 12;
+const skip = (page - 1) * limit;
+const products = await Product.find()
+  .limit(limit)
+  .skip(skip)
+  .sort({ createdAt: -1 });
+                </div>
+            </div>
+
+            <h3>Challenge 2: Cart State Management</h3>
+            <div class="challenge-box">
+                <p><strong>Problem:</strong> Cart data lost on page refresh</p>
+                <p><strong>Solution:</strong> Used localStorage with Context API</p>
+                <div class="code-snippet">
+// Cart persistence
+useEffect(() => {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}, [cart]);
+                </div>
+            </div>
+
+            <h3>Challenge 3: Secure Authentication</h3>
+            <div class="challenge-box">
+                <p><strong>Problem:</strong> Protecting user data and admin routes</p>
+                <p><strong>Solution:</strong> JWT tokens with HTTP-only cookies and role-based access control</p>
+            </div>
+        </section>
+
+        <!-- Results -->
+        <section class="case-study-section">
+            <h2><i class='bx bx-trophy'></i> Results & Impact</h2>
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-number">500+</div>
+                    <div class="result-label">Products Listed</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">5K+</div>
+                    <div class="result-label">Lines of Code</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">100%</div>
+                    <div class="result-label">Mobile Responsive</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">&lt;2s</div>
+                    <div class="result-label">Page Load Time</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lessons Learned -->
+        <section class="case-study-section">
+            <h2><i class='bx bx-book-open'></i> Lessons Learned</h2>
+            <ol>
+                <li><strong>Plan the database schema early:</strong> Changing schema mid-project is costly</li>
+                <li><strong>Implement authentication first:</strong> It affects every other feature</li>
+                <li><strong>Test on mobile from day one:</strong> Responsive design is easier to build than retrofit</li>
+                <li><strong>Use environment variables:</strong> Never hardcode API keys or secrets</li>
+                <li><strong>Document as you go:</strong> Future you will thank present you</li>
+            </ol>
+        </section>
+
+        <!-- What I'd Do Differently -->
+        <section class="case-study-section">
+            <h2><i class='bx bx-refresh'></i> What I'd Do Differently</h2>
+            <ul>
+                <li>Use TypeScript for better type safety</li>
+                <li>Implement automated testing (Jest, React Testing Library)</li>
+                <li>Add Redis for caching frequently accessed data</li>
+                <li>Use Docker for consistent development environment</li>
+                <li>Implement CI/CD pipeline for automated deployments</li>
+            </ul>
+        </section>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h3>Interested in Working Together?</h3>
+            <p>I'm available for freelance projects and full-time opportunities.</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/Borifan02/E_commerce_website" target="_blank" class="btn">
+                    <i class='bx bxl-github'></i> View Code
+                </a>
+                <a href="index.html#contact" class="btn btn-secondary">
+                    <i class='bx bx-envelope'></i> Contact Me
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-text">
+                <p>&copy; 2024 Borifan Dabasa. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 const navItems = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
@@ -97,20 +99,20 @@ const projects = [
     id: 'ecommerce',
     name: 'E-Commerce Platform',
     category: ['react', 'fullstack'],
-    image: 'image/nubelson-fernandes--Xqckh_XVU4-unsplash.jpg',
+    image: `${BASE_URL}image/nubelson-fernandes--Xqckh_XVU4-unsplash.jpg`,
     description: 'Full-featured online shopping platform with cart management, payment integration, and admin dashboard.',
     meta: ['50+ Products', '5K+ Lines'],
     stack: ['React', 'Node.js', 'MongoDB', 'Express'],
     links: [
       { label: 'Code', href: 'https://github.com/Borifan02/E_commerce_website' },
-      { label: 'Case Study', href: 'case-study-ecommerce.html' },
+      { label: 'Case Study', href: `${BASE_URL}case-study-ecommerce.html` },
     ],
   },
   {
     id: 'appointment',
     name: 'Appointment Management System',
     category: ['react', 'frontend'],
-    image: 'image/appointment.jpg',
+    image: `${BASE_URL}image/appointment.jpg`,
     description: 'Booking system with real-time availability, notifications, and calendar integration.',
     meta: ['React', 'Frontend'],
     stack: ['React', 'JSX', 'CSS'],
@@ -123,7 +125,7 @@ const projects = [
     id: 'blog',
     name: 'Blog Website',
     category: ['react', 'fullstack'],
-    image: 'image/blog.jpg',
+    image: `${BASE_URL}image/blog.jpg`,
     description: 'Modern blog website built with Next.js, featuring a clean UI and responsive design.',
     meta: ['Fast Load', '100% Responsive'],
     stack: ['TypeScript', 'CSS3', 'React', 'Responsive'],
@@ -136,7 +138,7 @@ const projects = [
     id: 'crypto',
     name: 'Crypto Tracker System',
     category: ['fullstack', 'frontend'],
-    image: 'image/crypto.jpg',
+    image: `${BASE_URL}image/crypto.jpg`,
     description: 'Real-time cryptocurrency tracker with Chart.js visualizations, search/filter, and historical price charts.',
     meta: ['Real-time API', 'Interactive Charts'],
     stack: ['HTML5', 'CSS3', 'JavaScript', 'Node.js'],
@@ -149,7 +151,7 @@ const projects = [
     id: 'food',
     name: 'Food Ordering Web Application',
     category: ['fullstack', 'frontend'],
-    image: 'image/order_food.png',
+    image: `${BASE_URL}image/order_food.png`,
     description: 'A full-stack food ordering platform with a modern UI, live tracking, secure auth, and payment integration.',
     meta: ['Live Tracking', 'Sales Insights'],
     stack: ['React', 'Tailwind CSS', 'MongoDB', 'Node.js / Express'],
@@ -161,15 +163,15 @@ const projects = [
 ];
 
 const blogs = [
-  { title: 'Building Scalable React Applications', icon: 'bxl-react', href: 'blog-react.html', text: 'Best practices for structuring React apps with performance optimization and clean architecture patterns.' },
-  { title: 'Node.js API Development Guide', icon: 'bxl-nodejs', href: 'blog-nodejs.html', text: 'Complete guide to building RESTful APIs with Express.js, MongoDB, and authentication best practices.' },
-  { title: 'Full Stack Development Roadmap', icon: 'bx-code-curly', href: 'blog-roadmap.html', text: 'A comprehensive guide for aspiring developers to master the MERN stack and modern web technologies.' },
+  { title: 'Building Scalable React Applications', icon: 'bxl-react', href: `${BASE_URL}blog-react.html`, text: 'Best practices for structuring React apps with performance optimization and clean architecture patterns.' },
+  { title: 'Node.js API Development Guide', icon: 'bxl-nodejs', href: `${BASE_URL}blog-nodejs.html`, text: 'Complete guide to building RESTful APIs with Express.js, MongoDB, and authentication best practices.' },
+  { title: 'Full Stack Development Roadmap', icon: 'bx-code-curly', href: `${BASE_URL}blog-roadmap.html`, text: 'A comprehensive guide for aspiring developers to master the MERN stack and modern web technologies.' },
 ];
 
 const certifications = [
-  { title: 'Become a Fullstack Developer', issuer: 'Educative', date: 'October 14/2025', image: 'image/image_1.jpg' },
-  { title: 'Programming Fundamentals', issuer: 'Udacity', date: 'August-27/2024', image: 'image/image_2.jpg' },
-  { title: 'JavaScript Essentials', issuer: 'freeCodeCamp', date: 'December-22/2025', image: 'image/image_3.jpg' },
+  { title: 'Become a Fullstack Developer', issuer: 'Educative', date: 'October 14/2025', image: `${BASE_URL}image/image_1.jpg` },
+  { title: 'Programming Fundamentals', issuer: 'Udacity', date: 'August-27/2024', image: `${BASE_URL}image/image_2.jpg` },
+  { title: 'JavaScript Essentials', issuer: 'freeCodeCamp', date: 'December-22/2025', image: `${BASE_URL}image/image_3.jpg` },
 ];
 
 const strengths = [
@@ -515,7 +517,7 @@ function App() {
                 <a href="#contact" className="rounded-full bg-emerald-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-emerald-300">
                   Hire Me
                 </a>
-                <a href="assets/CV.pdf" download className="rounded-full border border-white/15 bg-white/5 px-6 py-3 font-semibold text-white transition hover:bg-white/10">
+                <a href={`${BASE_URL}assets/CV.pdf`} download className="rounded-full border border-white/15 bg-white/5 px-6 py-3 font-semibold text-white transition hover:bg-white/10">
                   Download CV
                 </a>
               </div>
@@ -539,7 +541,7 @@ function App() {
             <div className="relative mx-auto w-full max-w-lg">
               <div className="absolute inset-0 -z-10 rounded-[2rem] bg-emerald-400/10 blur-3xl" />
               <div className="rounded-[2rem] border border-white/10 bg-white/5 p-4 shadow-glow backdrop-blur">
-                <img src="image/computer_engineer-campare-page.png" alt="Borifan Dabasa - Full Stack Developer" className="h-[520px] w-full rounded-[1.5rem] object-cover object-top" />
+                <img src={`${BASE_URL}image/computer_engineer-campare-page.png`} alt="Borifan Dabasa - Full Stack Developer" className="h-[520px] w-full rounded-[1.5rem] object-cover object-top" />
               </div>
             </div>
           </div>
