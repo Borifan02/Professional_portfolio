@@ -163,9 +163,9 @@ const projects = [
 ];
 
 const blogs = [
-  { title: 'Building Scalable React Applications', icon: 'bxl-react', href: `${BASE_URL}blog-react.html`, text: 'Best practices for structuring React apps with performance optimization and clean architecture patterns.' },
-  { title: 'Node.js API Development Guide', icon: 'bxl-nodejs', href: `${BASE_URL}blog-nodejs.html`, text: 'Complete guide to building RESTful APIs with Express.js, MongoDB, and authentication best practices.' },
-  { title: 'Full Stack Development Roadmap', icon: 'bx-code-curly', href: `${BASE_URL}blog-roadmap.html`, text: 'A comprehensive guide for aspiring developers to master the MERN stack and modern web technologies.' },
+  { title: 'Building Scalable React Applications', icon: 'bxl-react', href: `${BASE_URL}blog-react.html`, date: 'January 2025', text: 'Best practices for structuring React apps with performance optimization and clean architecture patterns.' },
+  { title: 'Node.js API Development Guide', icon: 'bxl-nodejs', href: `${BASE_URL}blog-nodejs.html`, date: 'January 2025', text: 'Complete guide to building RESTful APIs with Express.js, MongoDB, and authentication best practices.' },
+  { title: 'Full Stack Development Roadmap', icon: 'bx-code-curly', href: `${BASE_URL}blog-roadmap.html`, date: 'January 2025', text: 'A comprehensive guide for aspiring developers to master the MERN stack and modern web technologies.' },
 ];
 
 const certifications = [
@@ -717,6 +717,7 @@ function App() {
                 </div>
                 <h3 className="mt-5 text-2xl font-bold text-white">{post.title}</h3>
                 <p className="mt-4 leading-7 text-slate-300">{post.text}</p>
+                <p className="mt-4 text-sm text-emerald-300">{post.date}</p>
                 <a href={post.href} className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald-300 transition hover:text-emerald-200">
                   Read More <i className="bx bx-right-arrow-alt text-lg" />
                 </a>
