@@ -541,7 +541,7 @@ function App() {
             <div className="relative mx-auto w-full max-w-lg">
               <div className="absolute inset-0 -z-10 rounded-[2rem] bg-emerald-400/10 blur-3xl" />
               <div className="rounded-[2rem] border border-white/10 bg-white/5 p-4 shadow-glow backdrop-blur">
-                <img src={`${BASE_URL}image/computer_engineer-campare-page.png`} alt="Borifan Dabasa - Full Stack Developer" className="h-[520px] w-full rounded-[1.5rem] object-cover object-top" />
+                <img src={`${BASE_URL}image/profile.jpg`} alt="Borifan Dabasa - Full Stack Developer" className="h-[520px] w-full rounded-[1.5rem] object-cover object-top" />
               </div>
             </div>
           </div>
