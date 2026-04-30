@@ -139,12 +139,12 @@ const projects = [
     name: 'Crypto Tracker System',
     category: ['fullstack', 'frontend'],
     image: `${BASE_URL}image/crypto.jpg`,
-    description: 'Real-time cryptocurrency tracker with Chart.js visualizations, search/filter, and historical price charts.',
+    description: 'A web application to track real-time cryptocurrency prices, manage a personal portfolio, and maintain a watchlist of favorite coins.',
     meta: ['Real-time API', 'Interactive Charts'],
-    stack: ['HTML5', 'CSS3', 'JavaScript', 'Node.js'],
+    stack: ['Tailwind CSS', 'React js ', 'Express js', 'Node.js','MongoDB'],
     links: [
-      { label: 'Code', href: 'https://github.com/Borifan02/Crypto-tracker' },
-      { label: 'Live Demo', href: 'https://crypto-tracker-system.vercel.app/' },
+      { label: 'Code', href: 'https://github.com/Borifan02/cryptoTrack' },
+      { label: 'Live Demo', href: 'https://crypto-track-mauve-delta.vercel.app/' },
     ],
   },
   {
