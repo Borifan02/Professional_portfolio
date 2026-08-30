@@ -141,7 +141,7 @@ const projects = [
     image: `${BASE_URL}image/crypto.jpg`,
     description: 'A web application to track real-time cryptocurrency prices, manage a personal portfolio, and maintain a watchlist of favorite coins.',
     meta: ['Real-time API', 'Interactive Charts'],
-    stack: ['Tailwind CSS', 'React js ', 'Express js', 'Node.js','MongoDB'],
+    stack: ['Tailwind CSS', 'React js ', 'Express js', 'Node.js', 'MongoDB'],
     links: [
       { label: 'Code', href: 'https://github.com/Borifan02/cryptoTrack' },
       { label: 'Live Demo', href: 'https://crypto-track-mauve-delta.vercel.app/' },
@@ -158,6 +158,19 @@ const projects = [
     links: [
       { label: 'Code', href: 'https://github.com/Borifan02/Food-ordering-web-app' },
       { label: 'Live Demo', href: 'https://foodorderingweb-kappa.vercel.app/' },
+    ],
+  },
+  {
+    id: 'management',
+    name: 'Project Management Saas System',
+    category: ['fullstack', 'frontend'],
+    image: `${BASE_URL}image/management.jpg`,
+    description: 'Welcome to TeamSync, a powerful and scalable multi-tenancy project management system built with Node.js, MongoDB, and React. Designed for real-world B2B needs, this project delivers features like Google Sign-In, workspace management, project tracking, task collaboration, role-based permissions, and more. Perfect for developers aiming to create SaaS.',
+    meta: ['Real Time Collaboration', 'Role Based Access Control'],
+    stack: ['React', 'Tailwind CSS', 'MongoDB', 'Node.js / Express', 'Google Sign-In'],
+    links: [
+      { label: 'Code', href: 'https://github.com/Borifan02/Advanced-Team-Project-Management-Saas' },
+      { label: 'Live Demo', href: 'https://advanced-team-project-management-sa.vercel.app/' },
     ],
   },
 ];
@@ -648,9 +661,8 @@ function App() {
                 key={filter}
                 type="button"
                 onClick={() => setProjectFilter(filter)}
-                className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
-                  projectFilter === filter ? 'bg-emerald-400 text-slate-950' : 'border border-white/10 bg-white/5 text-slate-200 hover:bg-white/10'
-                }`}
+                className={`rounded-full px-5 py-2 text-sm font-semibold transition ${projectFilter === filter ? 'bg-emerald-400 text-slate-950' : 'border border-white/10 bg-white/5 text-slate-200 hover:bg-white/10'
+                  }`}
               >
                 {filter === 'all' ? 'All' : filter[0].toUpperCase() + filter.slice(1)}
               </button>
