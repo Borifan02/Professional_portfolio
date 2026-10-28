@@ -31,8 +31,10 @@ const skillGroups = [
     items: [
       ['Node.js', 87],
       ['Express.js', 85],
+      ['Spring Boot', 82],
       ['MongoDB', 82],
       ['MySQL', 80],
+      ['PostgreSQL', 78],
       ['PHP', 75],
     ],
   },
@@ -62,19 +64,19 @@ const experience = [
   {
     title: 'Software Engineering Student',
     place: 'Haramaya University',
-    date: '2023 - Present',
+    date: '2023 - 2027',
     text: "Pursuing a Bachelor's degree in Software Engineering with focus on full-stack development, algorithms, and software architecture.",
   },
   {
     title: 'Full Stack Developer',
     place: 'Self-Employed',
     date: '2024 - Present',
-    text: 'Specialized in building scalable web applications using the MERN stack (MongoDB, Express.js, React.js, Node.js). Successfully delivered multiple projects including e-commerce platforms, appointment management systems, and content management solutions. Focused on writing clean, maintainable code with emphasis on responsive design, API integration, and optimal user experience. Collaborated directly with clients to understand requirements, provide technical solutions, and ensure timely project delivery.',
+    text: 'Specialized in building scalable web applications using the MERN stack (MongoDB, Express.js, React.js, Node.js) and also Spring Boot and PostgreSQL. Successfully delivered multiple projects including e-commerce platforms, appointment management systems, Multi-tenant Project-Management-system , Food Ordering Web Application , and many more. Focused on writing clean, maintainable code with emphasis on responsive design, API integration, and optimal user experience. Collaborated directly with clients to understand requirements, provide technical solutions, and ensure timely project delivery.',
   },
   {
     title: 'Software Development Intern (Full-Stack)',
     place: 'Information Network Security Administration (INSA)',
-    date: 'Feb 2026 - Present',
+    date: 'February 2026 - September 2026',
     text: 'Worked as a Web Development Intern contributing to the development of a full-stack enterprise system. Project: Integrated Tax Administration System - a web-based platform designed to manage and streamline tax-related processes. Developed frontend interfaces using React and built backend services using Spring Boot. Designed and implemented RESTful APIs and integrated PostgreSQL for secure and efficient data storage. Participated in debugging, testing, and performance optimization while following clean code and best practices. Collaborated with team members in an agile environment to deliver scalable and reliable system features.',
   },
 ];
@@ -173,6 +175,18 @@ const projects = [
       { label: 'Live Demo', href: 'https://advanced-team-project-management-sa.vercel.app/' },
     ],
   },
+  {
+    id: 'management',
+    name: 'Tax Audit System',
+    category: ['fullstack', 'frontend'],
+    image: `${BASE_URL}image/tax.png`,
+    description: 'Integrated Tax Administration System – Tax Audit Module (Ministry of Revenue, Ethiopia) A full-stack web application that manages the complete tax-audit lifecycle: annual audit planning, case creation and routing, committee review, audit execution (Desk, Comprehensive, Transfer Pricing, Issue, Joint), quality assurance, and reporting..',
+    meta: ['Manage tax audit lifecycle', 'Role Based Access Control backofficer dashboard'],
+    stack: ['React', 'Tailwind CSS', 'postgresql', 'Spring Boot'],
+    links: [
+      { label: 'Code', href: 'https://github.com/Borifan02/Tax_audit_system' },
+    ],
+  },
 ];
 
 const blogs = [
@@ -196,7 +210,7 @@ const strengths = [
   ['Clean Code Advocate', 'Committed to writing maintainable, well-documented code following SOLID principles.', 'bx-code-block'],
 ];
 
-const heroRoles = ['Full Stack Developer', 'React Specialist', 'MERN Builder'];
+const heroRoles = ['Full Stack Developer', 'React Developer', 'Software Engineer'];
 const scriptURL = 'https://script.google.com/macros/s/AKfycby0BSxcpnnHTKTy2rXwg9vVtO7PDaidp_zNOg1ILij4huGNz40fPdf4HC0jnvDX8xOx/exec';
 
 function App() {
@@ -530,7 +544,7 @@ function App() {
                 <a href="#contact" className="rounded-full bg-emerald-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-emerald-300">
                   Hire Me
                 </a>
-                <a href={`${BASE_URL}assets/CV.pdf`} download className="rounded-full border border-white/15 bg-white/5 px-6 py-3 font-semibold text-white transition hover:bg-white/10">
+                <a href={`${BASE_URL}assets/last_last_professional_resume.pdf`} download className="rounded-full border border-white/15 bg-white/5 px-6 py-3 font-semibold text-white transition hover:bg-white/10">
                   Download CV
                 </a>
               </div>
@@ -573,7 +587,7 @@ function App() {
                 I’m a Software Engineering student at Haramaya University with a passion for building scalable, high-performance web applications.
               </p>
               <p className="mt-4 text-lg leading-8 text-slate-300">
-                My toolkit includes MERN, Next.js, TypeScript, Tailwind CSS, PHP, and MySQL, and I care about production-ready UI and maintainable code.
+                My toolkit includes MERN, Next.js, TypeScript, Tailwind CSS, PHP, Java, Spring-boot, MySQL, PostgreSQL and I care about production-ready UI and maintainable code.
               </p>
               <div className="mt-8 grid gap-4 sm:grid-cols-3">
                 {[
