@@ -537,7 +537,7 @@ function App() {
                 A <span className="text-emerald-300">{heroRoles[roleIndex]}</span>
               </p>
               <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-                I'm a Full Stack Developer crafting scalable web solutions with modern technologies. Specialized in MERN Stack development with a keen eye for UI/UX design.
+                Full Stack Developer dedicated to engineering scalable, high-performance web applications and modern digital solutions from concept to production. I bridge robust backend architecture with responsive, intuitive interfaces—building secure, maintainable software tailored for real-world impact.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
