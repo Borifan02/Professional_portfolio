@@ -112,12 +112,12 @@ const projects = [
   },
   {
     id: 'appointment',
-    name: 'Appointment Management System',
-    category: ['react', 'frontend'],
-    image: `${BASE_URL}image/appointment.jpg`,
+    name: 'Enterprise Clinical Appointment Management System',
+    category: ['react', 'Fullstack'],
+    image: `${BASE_URL}image/appointment_clinic.png`,
     description: 'Booking system with real-time availability, notifications, and calendar integration.',
     meta: ['React', 'Frontend'],
-    stack: ['React', 'JSX', 'CSS'],
+    stack: ['React', 'JSX', 'CSS', 'Node JS', 'MongoDB'],
     links: [
       { label: 'Code', href: 'https://github.com/Borifan02/Appointment-Management-System.git' },
       { label: 'Live Demo', href: 'https://appointment-management-system-flame.vercel.app/' },
