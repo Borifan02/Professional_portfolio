@@ -1497,7 +1497,7 @@ function App() {
         </section>
 
         {/* ================= ABOUT SECTION ================= */}
-        <SectionTitle eyebrow="Background & Philosophy" title="About Borifan" />
+        <SectionTitle eyebrow="Background & Philosophy" title="About Me" />
         <section id="about" className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] items-center">
             {/* Visual Engineering Philosophy Card */}
