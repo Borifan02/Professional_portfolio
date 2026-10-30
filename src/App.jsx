@@ -1588,7 +1588,7 @@ function App() {
         </section>
 
         {/* ================= TECHNICAL SKILLS SECTION ================= */}
-        <SectionTitle eyebrow="Proficiencies" title="Technical Arsenal" />
+        <SectionTitle eyebrow="Proficiencies" title="Technical Skills" />
         <section id="skills" className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
           {/* Category Tabs */}
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
