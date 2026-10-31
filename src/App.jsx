@@ -138,7 +138,7 @@ const projects = [
     name: 'TeamSync: Project Management SaaS',
     tagline: 'Multi-tenant B2B project & task collaboration platform',
     category: ['fullstack', 'react', 'featured'],
-    image: `${BASE_URL}image/management.jpg`,
+    image: `${BASE_URL}image/projectMN.png`,
     featured: true,
     description:
       'A powerful, scalable multi-tenant SaaS application designed for modern software and business teams. Offers workspace tenancy, Google OAuth authentication, customizable project boards, role-based member permissions, and live task status tracking.',
