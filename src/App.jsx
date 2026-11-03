@@ -130,7 +130,9 @@ const projects = [
     meta: ['Ministry of Revenue Project', 'Enterprise RBAC', 'Spring Boot + Postgres'],
     stack: ['React', 'Tailwind CSS', 'Spring Boot', 'PostgreSQL', 'RESTful APIs'],
     links: [
+      { label: 'Live Platform', href: 'https://itas-audit-system.vercel.app/', icon: 'bx-link-external' },
       { label: 'GitHub Repository', href: 'https://github.com/Borifan02/Tax_audit_system', icon: 'bxl-github' },
+
     ],
   },
   {
