@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 
 export default function BlogSection({
   posts = [],
@@ -11,6 +11,7 @@ export default function BlogSection({
   onEditArticle,
   onDeleteArticle,
   onResetPosts,
+  onImportPosts,
   triggerToast = () => { },
   playClickSound = () => { },
 }) {
@@ -20,6 +21,51 @@ export default function BlogSection({
   const [onlySaved, setOnlySaved] = useState(false);
   const [sortBy, setSortBy] = useState('newest'); // 'newest' | 'claps' | 'readTime'
   const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'list'
+  const fileInputRef = useRef(null);
+
+  const handleExportJson = () => {
+    playClickSound();
+    const exportData = {
+      exportedAt: new Date().toISOString(),
+      developer: 'Borifan Dabasa',
+      totalPosts: posts.length,
+      posts,
+      likes,
+      bookmarks,
+    };
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `borifan-articles-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+    triggerToast('All publications exported as JSON backup!');
+  };
+
+  const handleImportFileChange = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const parsed = JSON.parse(event.target.result);
+        const imported = Array.isArray(parsed) ? parsed : parsed.posts;
+        if (Array.isArray(imported) && imported.length > 0) {
+          if (onImportPosts) {
+            onImportPosts(imported);
+            triggerToast(`Successfully imported ${imported.length} publications!`);
+          }
+        } else {
+          triggerToast('Invalid JSON file format.');
+        }
+      } catch {
+        triggerToast('Failed to parse JSON file.');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  };
 
   // Categories with counts
   const categoriesWithCounts = useMemo(() => {
@@ -178,6 +224,33 @@ export default function BlogSection({
             >
               <i className="bx bx-list-ul" />
             </button>
+          </div>
+
+          {/* Export & Import Buttons */}
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={handleExportJson}
+              title="Export publications backup as JSON"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 hover:border-accent hover:text-white transition text-sm"
+            >
+              <i className="bx bx-download" />
+            </button>
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              title="Import publications from JSON file"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 hover:border-accent hover:text-white transition text-sm"
+            >
+              <i className="bx bx-upload" />
+            </button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".json"
+              onChange={handleImportFileChange}
+              className="hidden"
+            />
           </div>
         </div>
       </div>

@@ -2,6 +2,9 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import BlogSection from './components/Blog/BlogSection';
 import BlogReaderModal from './components/Blog/BlogReaderModal';
 import BlogEditorModal from './components/Blog/BlogEditorModal';
+import DevLabSection from './components/DevLab/DevLabSection';
+import ProjectEstimator from './components/Estimator/ProjectEstimator';
+import KeyboardShortcutsModal from './components/Shortcuts/KeyboardShortcutsModal';
 import {
   loadStoredBlogPosts,
   saveStoredBlogPosts,
@@ -20,6 +23,8 @@ const navItems = [
   { label: 'Skills', href: '#skills', icon: 'bx-code-alt' },
   { label: 'Experience', href: '#experience', icon: 'bx-briefcase-alt-2' },
   { label: 'Projects', href: '#portfolio', icon: 'bx-layer' },
+  { label: 'Dev Lab', href: '#devlab', icon: 'bx-terminal' },
+  { label: 'Estimator', href: '#estimator', icon: 'bx-calculator' },
   { label: 'Testimonials', href: '#testimonials', icon: 'bx-chat' },
   { label: 'Certificates', href: '#certifications', icon: 'bx-award' },
   { label: 'Blog', href: '#blog', icon: 'bx-news' },
@@ -448,6 +453,8 @@ function App() {
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [isBlogEditorOpen, setIsBlogEditorOpen] = useState(false);
   const [editingArticle, setEditingArticle] = useState(null);
+  const [shortcutsModalOpen, setShortcutsModalOpen] = useState(false);
+  const [contactMessage, setContactMessage] = useState('');
 
   // Contact & Newsletter Status
   const [contactStatus, setContactStatus] = useState('');
@@ -589,6 +596,54 @@ function App() {
     window.addEventListener('hashchange', checkHashForArticle);
     return () => window.removeEventListener('hashchange', checkHashForArticle);
   }, [blogPosts]);
+
+  const handleTransferEstimate = (text) => {
+    setContactMessage(text);
+  };
+
+  const handleImportArticles = (importedPosts) => {
+    setBlogPosts((prev) => {
+      const combined = [...importedPosts, ...prev.filter((p) => !importedPosts.some((ip) => ip.id === p.id))];
+      saveStoredBlogPosts(combined);
+      return combined;
+    });
+  };
+
+  // Global Keyboard Shortcuts
+  useEffect(() => {
+    const handleGlobalKeyDown = (e) => {
+      const tag = document.activeElement?.tagName?.toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+
+      if (e.key === '?') {
+        e.preventDefault();
+        setShortcutsModalOpen((prev) => !prev);
+      } else if (e.key === 't' || e.key === 'T') {
+        setHeroMode((prev) => (prev === 'visual' ? 'terminal' : 'visual'));
+      } else if (e.key === 'm' || e.key === 'M') {
+        toggleTheme();
+      } else if (e.key === 'b' || e.key === 'B') {
+        window.location.hash = '#blog';
+      } else if (e.key === 'p' || e.key === 'P') {
+        window.location.hash = '#portfolio';
+      } else if (e.key === 'd' || e.key === 'D') {
+        window.location.hash = '#devlab';
+      } else if (e.key === 'e' || e.key === 'E') {
+        window.location.hash = '#estimator';
+      } else if (e.key === 'c' || e.key === 'C') {
+        window.location.hash = '#contact';
+      } else if (e.key === 's' || e.key === 'S') {
+        setSoundEnabled((prev) => {
+          const next = !prev;
+          triggerToast(next ? 'Sound effects enabled' : 'Sound effects muted');
+          return next;
+        });
+      }
+    };
+
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, []);
 
   // Hero roles cycling
   useEffect(() => {
@@ -896,8 +951,23 @@ function App() {
       case 'help':
         newHistory.push({
           type: 'output',
-          text: 'Available Commands: whoami, skills, projects, experience, contact, resume, blog, clear, accent [emerald|cyan|violet|amber]',
+          text: 'Available Commands: whoami, skills, projects, devlab, estimator, experience, contact, resume, blog, shortcuts, clear, accent [emerald|cyan|violet|amber]',
         });
+        break;
+      case 'devlab':
+      case 'api':
+        window.location.hash = '#devlab';
+        newHistory.push({ type: 'output', text: 'Navigating to Dev Lab REST API Console...' });
+        break;
+      case 'estimator':
+      case 'calc':
+        window.location.hash = '#estimator';
+        newHistory.push({ type: 'output', text: 'Navigating to Project Scope & Architecture Estimator...' });
+        break;
+      case 'shortcuts':
+      case '?':
+        setShortcutsModalOpen(true);
+        newHistory.push({ type: 'output', text: 'Opening Keyboard Shortcuts HUD...' });
         break;
       case 'blog':
       case 'articles':
@@ -1008,6 +1078,7 @@ function App() {
       setContactStatus('Message delivered successfully! Borifan will reach back out promptly.');
       triggerToast('Message sent successfully! 🚀');
       form.reset();
+      setContactMessage('');
     } catch (error) {
       setContactStatusType('error');
       setContactStatus('Failed to send message. Please reach out directly to dabasaborifan@gmail.com.');
@@ -1033,6 +1104,7 @@ function App() {
       setNewsletterStatus('Thank you for subscribing! You are now subscribed to technical updates.');
       triggerToast('Subscribed to developer updates! 📬');
       form.reset();
+      setContactMessage('');
     } catch (error) {
       setNewsletterStatusType('error');
       setNewsletterStatus('Subscription failed. Please verify your connection.');
@@ -1064,10 +1136,13 @@ function App() {
       { label: 'Jump to Technical Skills', category: 'Navigation', icon: 'bx-code-alt', action: () => (window.location.hash = '#skills') },
       { label: 'Jump to Work Experience', category: 'Navigation', icon: 'bx-briefcase-alt-2', action: () => (window.location.hash = '#experience') },
       { label: 'Jump to Projects & Portfolio', category: 'Navigation', icon: 'bx-layer', action: () => (window.location.hash = '#portfolio') },
+      { label: 'Jump to Dev Lab API Console', category: 'Navigation', icon: 'bx-terminal', action: () => (window.location.hash = '#devlab') },
+      { label: 'Jump to Project Scope Estimator', category: 'Navigation', icon: 'bx-calculator', action: () => (window.location.hash = '#estimator') },
       { label: 'Jump to Testimonials', category: 'Navigation', icon: 'bx-chat', action: () => (window.location.hash = '#testimonials') },
       { label: 'Jump to Certifications', category: 'Navigation', icon: 'bx-award', action: () => (window.location.hash = '#certifications') },
       { label: 'Jump to Technical Blog', category: 'Navigation', icon: 'bx-news', action: () => (window.location.hash = '#blog') },
       { label: 'Jump to Contact', category: 'Navigation', icon: 'bx-envelope', action: () => (window.location.hash = '#contact') },
+      { label: 'Show Keyboard Shortcuts HUD (?)', category: 'Help', icon: 'bx-command', action: () => setShortcutsModalOpen(true) },
       { label: 'Download Resume (PDF)', category: 'Actions', icon: 'bx-download', action: () => window.open(`${BASE_URL}assets/last_last_professional_resume.pdf`, '_blank') },
       { label: 'Copy Email Address (dabasaborifan@gmail.com)', category: 'Actions', icon: 'bx-copy', action: () => copyToClipboard('dabasaborifan@gmail.com', 'cmd-email', 'email') },
       { label: 'Toggle Light / Dark Mode', category: 'Settings', icon: 'bx-adjust', action: toggleTheme },
@@ -1295,6 +1370,19 @@ function App() {
                 }`}
             >
               <i className={`bx ${soundEnabled ? 'bx-volume-full' : 'bx-volume-mute'} text-lg`} />
+            </button>
+
+            {/* Keyboard Shortcuts HUD Toggle */}
+            <button
+              type="button"
+              onClick={() => {
+                playClickSound();
+                setShortcutsModalOpen(true);
+              }}
+              title="Keyboard Shortcuts (Press ?)"
+              className="hidden sm:inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sm font-mono font-bold text-slate-300 transition hover:bg-white/10 hover:text-white"
+            >
+              ?
             </button>
 
             {/* Mobile Hamburger Toggle */}
@@ -2164,6 +2252,16 @@ function App() {
           </div>
         </section>
 
+        {/* ================= DEV LAB & REST API CONSOLE ================= */}
+        <DevLabSection triggerToast={triggerToast} playClickSound={playClickSound} />
+
+        {/* ================= PROJECT SCOPE & ARCHITECTURE ESTIMATOR ================= */}
+        <ProjectEstimator
+          onTransferToContact={handleTransferEstimate}
+          triggerToast={triggerToast}
+          playClickSound={playClickSound}
+        />
+
         {/* ================= TESTIMONIALS & ENDORSEMENTS ================= */}
         <SectionTitle eyebrow="Endorsements" title="Client & Colleague Praise" />
         <section id="testimonials" className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
@@ -2289,6 +2387,7 @@ function App() {
           }}
           onDeleteArticle={handleDeleteArticle}
           onResetPosts={handleResetArticles}
+          onImportPosts={handleImportArticles}
           triggerToast={triggerToast}
           playClickSound={playClickSound}
         />
@@ -2475,6 +2574,8 @@ function App() {
                 <textarea
                   name="Message"
                   rows="5"
+                  value={contactMessage}
+                  onChange={(e) => setContactMessage(e.target.value)}
                   placeholder="Tell me about your project goals, timelines, or role specifics..."
                   className="w-full rounded-xl border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-600 focus:border-accent"
                   required
@@ -2715,6 +2816,12 @@ function App() {
         editingArticle={editingArticle}
         triggerToast={triggerToast}
         playClickSound={playClickSound}
+      />
+
+      {/* ================= KEYBOARD SHORTCUTS HUD MODAL ================= */}
+      <KeyboardShortcutsModal
+        isOpen={shortcutsModalOpen}
+        onClose={() => setShortcutsModalOpen(false)}
       />
     </div>
   );

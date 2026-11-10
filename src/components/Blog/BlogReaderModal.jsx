@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import MarkdownRenderer from './MarkdownRenderer';
 import { loadStoredComments, saveStoredComments } from '../../data/blogData';
 
@@ -20,7 +20,34 @@ export default function BlogReaderModal({
   const [commentName, setCommentName] = useState('');
   const [commentText, setCommentText] = useState('');
   const [isSubmittingComment, setIsSubmittingComment] = useState(false);
+  const [tocOpen, setTocOpen] = useState(false);
+  const [shareMenuOpen, setShareMenuOpen] = useState(false);
   const contentRef = useRef(null);
+
+  // Extract headings for Table of Contents
+  const headings = useMemo(() => {
+    if (!article?.content) return [];
+    const lines = article.content.split('\n');
+    const result = [];
+    lines.forEach((line) => {
+      const trimmed = line.trim();
+      if (trimmed.startsWith('## ')) {
+        const text = trimmed.slice(3).trim();
+        const id = text.toLowerCase().replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-');
+        result.push({ text, id });
+      }
+    });
+    return result;
+  }, [article?.content]);
+
+  const scrollToHeading = (id) => {
+    playClickSound();
+    setTocOpen(false);
+    const target = contentRef.current?.querySelector(`#${id}`);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   // Load comments for this article
   useEffect(() => {
@@ -132,6 +159,67 @@ export default function BlogReaderModal({
 
           {/* Action buttons */}
           <div className="flex items-center gap-2">
+            {/* Reading progress indicator */}
+            <span className="hidden sm:inline-block text-[11px] font-mono text-slate-400 mr-1">
+              {Math.round(scrollPercent)}% read
+            </span>
+
+            {/* Table of Contents Dropdown Button */}
+            {headings.length > 0 && (
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => {
+                    playClickSound();
+                    setTocOpen(!tocOpen);
+                    setShareMenuOpen(false);
+                  }}
+                  title="Table of Contents"
+                  className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
+                    tocOpen
+                      ? 'border-accent bg-accent/20 text-accent font-bold'
+                      : 'border-white/10 bg-white/5 text-slate-300 hover:border-accent hover:text-white'
+                  }`}
+                >
+                  <i className="bx bx-list-ol text-sm" />
+                  <span className="hidden md:inline">Outline ({headings.length})</span>
+                </button>
+
+                {tocOpen && (
+                  <div
+                    className="absolute right-0 top-full mt-2 w-72 overflow-hidden rounded-2xl border border-white/15 bg-slate-900/95 p-3 shadow-2xl backdrop-blur-2xl z-40 animate-fade-in"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div className="border-b border-white/10 pb-2 mb-2 flex items-center justify-between">
+                      <span className="text-[11px] font-mono font-bold uppercase text-accent">
+                        Table of Contents
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setTocOpen(false)}
+                        className="text-slate-400 hover:text-white"
+                      >
+                        <i className="bx bx-x text-sm" />
+                      </button>
+                    </div>
+                    <div className="max-h-60 overflow-y-auto space-y-1">
+                      {headings.map((h, i) => (
+                        <button
+                          key={h.id}
+                          type="button"
+                          onClick={() => scrollToHeading(h.id)}
+                          className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-left text-xs text-slate-300 transition hover:bg-accent/15 hover:text-accent"
+                        >
+                          <span className="font-mono text-[10px] text-accent/70">{i + 1}.</span>
+                          <span className="truncate">{h.text}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Claps */}
             <button
               type="button"
@@ -167,15 +255,68 @@ export default function BlogReaderModal({
               <i className={`bx ${isBookmarked ? 'bxs-bookmark' : 'bx-bookmark'}`} />
             </button>
 
-            {/* Share */}
-            <button
-              type="button"
-              onClick={handleShare}
-              title="Copy link"
-              className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 text-sm text-slate-300 transition hover:border-accent hover:text-white"
-            >
-              <i className="bx bx-share-alt" />
-            </button>
+            {/* Share Dropdown */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => {
+                  playClickSound();
+                  setShareMenuOpen(!shareMenuOpen);
+                  setTocOpen(false);
+                }}
+                title="Share Article"
+                className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 text-sm text-slate-300 transition hover:border-accent hover:text-white"
+              >
+                <i className="bx bx-share-alt" />
+              </button>
+
+              {shareMenuOpen && (
+                <div
+                  className="absolute right-0 top-full mt-2 w-48 overflow-hidden rounded-2xl border border-white/15 bg-slate-900/95 p-2 shadow-2xl backdrop-blur-2xl z-40 animate-fade-in"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleShare();
+                      setShareMenuOpen(false);
+                    }}
+                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate-300 hover:bg-accent/15 hover:text-white transition"
+                  >
+                    <i className="bx bx-copy text-sm text-accent" />
+                    <span>Copy Share URL</span>
+                  </button>
+
+                  <a
+                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                      `${article.title} by @Borifan02`,
+                    )}&url=${encodeURIComponent(
+                      `${window.location.origin}${window.location.pathname}#blog/${article.slug || article.id}`,
+                    )}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => setShareMenuOpen(false)}
+                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate-300 hover:bg-accent/15 hover:text-white transition"
+                  >
+                    <i className="bxl-twitter text-sm text-cyan-400" />
+                    <span>Share on X / Twitter</span>
+                  </a>
+
+                  <a
+                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+                      `${window.location.origin}${window.location.pathname}#blog/${article.slug || article.id}`,
+                    )}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => setShareMenuOpen(false)}
+                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate-300 hover:bg-accent/15 hover:text-white transition"
+                  >
+                    <i className="bxl-linkedin text-sm text-blue-400" />
+                    <span>Share on LinkedIn</span>
+                  </a>
+                </div>
+              )}
+            </div>
 
             {/* Close */}
             <button

@@ -207,12 +207,18 @@ export default function MarkdownRenderer({ content = '' }) {
 
     if (trimmed.startsWith('## ')) {
       flushList();
+      const rawHeading = trimmed.slice(3).trim();
+      const headingId = rawHeading.toLowerCase().replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-');
       elements.push(
         <h2
           key={`h2-${elements.length}`}
-          className="mt-10 mb-4 border-b border-white/10 pb-2 text-xl sm:text-2xl font-black text-white"
+          id={headingId}
+          className="mt-10 mb-4 scroll-mt-20 border-b border-white/10 pb-2 text-xl sm:text-2xl font-black text-white flex items-center justify-between group"
         >
-          {renderInline(trimmed.slice(3))}
+          <span>{renderInline(rawHeading)}</span>
+          <span className="opacity-0 group-hover:opacity-100 text-accent text-sm font-mono transition ml-2">
+            #
+          </span>
         </h2>,
       );
       continue;
