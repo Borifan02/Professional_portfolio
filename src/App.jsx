@@ -1,4 +1,16 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import BlogSection from './components/Blog/BlogSection';
+import BlogReaderModal from './components/Blog/BlogReaderModal';
+import BlogEditorModal from './components/Blog/BlogEditorModal';
+import {
+  loadStoredBlogPosts,
+  saveStoredBlogPosts,
+  loadStoredLikes,
+  saveStoredLikes,
+  loadStoredBookmarks,
+  saveStoredBookmarks,
+  INITIAL_BLOG_POSTS,
+} from './data/blogData';
 
 const BASE_URL = import.meta.env.BASE_URL;
 
@@ -311,35 +323,7 @@ const testimonials = [
   },
 ];
 
-const blogs = [
-  {
-    title: 'Building Scalable React Applications',
-    icon: 'bxl-react',
-    href: `${BASE_URL}blog-react.html`,
-    date: 'January 2025',
-    readTime: '6 min read',
-    tags: ['React', 'Architecture', 'State Management'],
-    text: 'Best practices for structuring modern React applications: component modularity, state decoupling, memoization strategies, and production performance optimization.',
-  },
-  {
-    title: 'Node.js API Development Guide',
-    icon: 'bxl-nodejs',
-    href: `${BASE_URL}blog-nodejs.html`,
-    date: 'January 2025',
-    readTime: '8 min read',
-    tags: ['Node.js', 'Express', 'Security', 'REST'],
-    text: 'A practical, end-to-end blueprint for architecting production-grade RESTful APIs with Express.js, MongoDB connection pooling, validation layers, and JWT authentication.',
-  },
-  {
-    title: 'Full Stack Development Roadmap',
-    icon: 'bx-code-curly',
-    href: `${BASE_URL}blog-roadmap.html`,
-    date: 'January 2025',
-    readTime: '10 min read',
-    tags: ['Career', 'MERN', 'Spring Boot', 'Roadmap'],
-    text: 'The comprehensive roadmap I followed to master modern full-stack development, moving from fundamental JavaScript and Java to enterprise distributed systems.',
-  },
-];
+// Dynamic blogs are managed via src/data/blogData.js with localStorage persistence
 
 const certifications = [
   {
@@ -457,6 +441,14 @@ function App() {
   // Certifications Modal
   const [selectedCertificate, setSelectedCertificate] = useState(null);
 
+  // Dynamic Blog State
+  const [blogPosts, setBlogPosts] = useState(() => loadStoredBlogPosts());
+  const [blogLikes, setBlogLikes] = useState(() => loadStoredLikes());
+  const [blogBookmarks, setBlogBookmarks] = useState(() => loadStoredBookmarks());
+  const [selectedArticle, setSelectedArticle] = useState(null);
+  const [isBlogEditorOpen, setIsBlogEditorOpen] = useState(false);
+  const [editingArticle, setEditingArticle] = useState(null);
+
   // Contact & Newsletter Status
   const [contactStatus, setContactStatus] = useState('');
   const [contactStatusType, setContactStatusType] = useState('success');
@@ -515,6 +507,88 @@ function App() {
         triggerToast('Failed to copy to clipboard.');
       });
   }
+
+  // Dynamic Blog Handlers
+  const handleLikeArticle = (articleId) => {
+    setBlogLikes((prev) => {
+      const isAlreadyLiked = !!prev[articleId];
+      const updated = { ...prev, [articleId]: !isAlreadyLiked };
+      saveStoredLikes(updated);
+      triggerToast(!isAlreadyLiked ? 'Thanks for clapping!' : 'Clap removed');
+      return updated;
+    });
+  };
+
+  const handleBookmarkArticle = (articleId) => {
+    setBlogBookmarks((prev) => {
+      const isAlreadySaved = prev.includes(articleId);
+      const updated = isAlreadySaved
+        ? prev.filter((id) => id !== articleId)
+        : [...prev, articleId];
+      saveStoredBookmarks(updated);
+      triggerToast(isAlreadySaved ? 'Removed from saved articles' : 'Saved to reading list!');
+      return updated;
+    });
+  };
+
+  const handleSaveArticle = (articleData) => {
+    setBlogPosts((prev) => {
+      const existsIndex = prev.findIndex((p) => p.id === articleData.id);
+      let updated;
+      if (existsIndex >= 0) {
+        updated = [...prev];
+        updated[existsIndex] = articleData;
+      } else {
+        updated = [articleData, ...prev];
+      }
+      saveStoredBlogPosts(updated);
+      return updated;
+    });
+  };
+
+  const handleDeleteArticle = (articleId) => {
+    setBlogPosts((prev) => {
+      const updated = prev.filter((p) => p.id !== articleId);
+      saveStoredBlogPosts(updated);
+      triggerToast('Article deleted.');
+      return updated;
+    });
+  };
+
+  const handleResetArticles = () => {
+    setBlogPosts(INITIAL_BLOG_POSTS);
+    saveStoredBlogPosts(INITIAL_BLOG_POSTS);
+  };
+
+  const handleOpenArticle = (article) => {
+    setSelectedArticle(article);
+    window.history.replaceState(null, '', `#blog/${article.slug || article.id}`);
+  };
+
+  const handleCloseArticle = () => {
+    setSelectedArticle(null);
+    if (window.location.hash.startsWith('#blog/')) {
+      window.history.replaceState(null, '', '#blog');
+    }
+  };
+
+  // URL Hash listener for direct article reading links
+  useEffect(() => {
+    const checkHashForArticle = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith('#blog/')) {
+        const slug = hash.replace('#blog/', '').trim();
+        const found = blogPosts.find((p) => p.slug === slug || p.id === slug);
+        if (found) {
+          setSelectedArticle(found);
+        }
+      }
+    };
+
+    checkHashForArticle();
+    window.addEventListener('hashchange', checkHashForArticle);
+    return () => window.removeEventListener('hashchange', checkHashForArticle);
+  }, [blogPosts]);
 
   // Hero roles cycling
   useEffect(() => {
@@ -790,12 +864,57 @@ function App() {
     playClickSound();
     const newHistory = [...terminalHistory, { type: 'prompt', text: terminalInput }];
 
+    if (cmd.startsWith('blog read ')) {
+      const arg = cmd.replace('blog read ', '').trim();
+      const num = parseInt(arg);
+      let targetPost = null;
+      if (!isNaN(num) && num >= 1 && num <= blogPosts.length) {
+        targetPost = blogPosts[num - 1];
+      } else {
+        targetPost = blogPosts.find(
+          (p) =>
+            p.slug.toLowerCase().includes(arg) ||
+            p.title.toLowerCase().includes(arg) ||
+            p.id.toLowerCase().includes(arg),
+        );
+      }
+      if (targetPost) {
+        handleOpenArticle(targetPost);
+        newHistory.push({ type: 'output', text: `Opening "${targetPost.title}" in reader modal...` });
+      } else {
+        newHistory.push({
+          type: 'error',
+          text: `Article not found matching "${arg}". Type "blog" to see available publications.`,
+        });
+      }
+      setTerminalHistory(newHistory);
+      setTerminalInput('');
+      return;
+    }
+
     switch (cmd) {
       case 'help':
         newHistory.push({
           type: 'output',
-          text: 'Available Commands: whoami, skills, projects, experience, contact, resume, clear, accent [emerald|cyan|violet|amber]',
+          text: 'Available Commands: whoami, skills, projects, experience, contact, resume, blog, clear, accent [emerald|cyan|violet|amber]',
         });
+        break;
+      case 'blog':
+      case 'articles':
+        newHistory.push({
+          type: 'output',
+          text:
+            `Technical Publications (${blogPosts.length}):\n` +
+            blogPosts
+              .map((p, i) => `  [${i + 1}] ${p.title} (${p.readTime}) -> "blog read ${i + 1}"`)
+              .join('\n') +
+            `\nCommands: blog read <num|slug>, blog write`,
+        });
+        break;
+      case 'blog write':
+        setEditingArticle(null);
+        setIsBlogEditorOpen(true);
+        newHistory.push({ type: 'output', text: 'Opening dynamic article writer modal...' });
         break;
       case 'whoami':
         newHistory.push({
@@ -958,12 +1077,27 @@ function App() {
       { label: 'Set Accent: Sunset Amber', category: 'Theme', icon: 'bx-palette', action: () => handleAccentChange('amber') },
       { label: 'Visit GitHub Profile (@Borifan02)', category: 'Social', icon: 'bxl-github', action: () => window.open('https://github.com/Borifan02', '_blank') },
       { label: 'Visit LinkedIn Profile', category: 'Social', icon: 'bxl-linkedin', action: () => window.open('http://www.linkedin.com/in/borifan-dabasa-a5191036b', '_blank') },
+      ...blogPosts.map((post) => ({
+        label: `Read Guide: ${post.title}`,
+        category: 'Publications',
+        icon: post.icon || 'bx-news',
+        action: () => handleOpenArticle(post),
+      })),
+      {
+        label: 'Write New Technical Publication',
+        category: 'Publications',
+        icon: 'bx-edit',
+        action: () => {
+          setEditingArticle(null);
+          setIsBlogEditorOpen(true);
+        },
+      },
     ];
 
     if (!commandSearch.trim()) return list;
     const q = commandSearch.toLowerCase();
     return list.filter((item) => item.label.toLowerCase().includes(q) || item.category.toLowerCase().includes(q));
-  }, [commandSearch]);
+  }, [commandSearch, blogPosts]);
 
   return (
     <div className="relative min-h-screen text-slate-100 selection:bg-accent/30 selection:text-white">
@@ -2137,56 +2271,27 @@ function App() {
           </div>
         </section>
 
-        {/* ================= TECHNICAL BLOG & GUIDES ================= */}
-        <SectionTitle eyebrow="Writings" title="Technical Publications" />
-        <section id="blog" className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-          <p className="max-w-2xl text-base text-slate-300">
-            Articles and practical engineering guides focused on scalable architectures, API hardening, and modern software workflows.
-          </p>
-
-          <div className="mt-8 grid gap-6 lg:grid-cols-3">
-            {blogs.map((post) => (
-              <article
-                key={post.title}
-                className="reveal-item flex flex-col justify-between rounded-[1.75rem] border border-white/10 bg-slate-900/70 p-7 shadow-glow transition hover:-translate-y-1.5 hover:border-accent/40 group"
-              >
-                <div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent/10 text-2xl text-accent">
-                      <i className={`bx ${post.icon}`} />
-                    </div>
-                    <span className="text-xs font-mono text-slate-400">{post.readTime}</span>
-                  </div>
-
-                  <h3 className="mt-5 text-xl font-bold text-white group-hover:text-accent transition">
-                    {post.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-300">{post.text}</p>
-
-                  <div className="mt-4 flex flex-wrap gap-1.5">
-                    {post.tags.map((t) => (
-                      <span key={t} className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[11px] text-accent">
-                        #{t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
-                  <span className="text-xs text-slate-400">{post.date}</span>
-                  <a
-                    href={post.href}
-                    onClick={playClickSound}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-accent transition hover:translate-x-1"
-                  >
-                    <span>Read Article</span>
-                    <i className="bx bx-right-arrow-alt text-base" />
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
+        {/* ================= DYNAMIC TECHNICAL BLOG & PUBLICATIONS ================= */}
+        <BlogSection
+          posts={blogPosts}
+          likes={blogLikes}
+          bookmarks={blogBookmarks}
+          onOpenArticle={handleOpenArticle}
+          onLike={handleLikeArticle}
+          onBookmark={handleBookmarkArticle}
+          onOpenEditor={() => {
+            setEditingArticle(null);
+            setIsBlogEditorOpen(true);
+          }}
+          onEditArticle={(post) => {
+            setEditingArticle(post);
+            setIsBlogEditorOpen(true);
+          }}
+          onDeleteArticle={handleDeleteArticle}
+          onResetPosts={handleResetArticles}
+          triggerToast={triggerToast}
+          playClickSound={playClickSound}
+        />
 
         {/* ================= NEWSLETTER SUBSCRIPTION ================= */}
         <section id="newsletter" className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
@@ -2584,6 +2689,33 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* ================= DYNAMIC BLOG READER MODAL ================= */}
+      {selectedArticle && (
+        <BlogReaderModal
+          article={selectedArticle}
+          onClose={handleCloseArticle}
+          likesCount={(selectedArticle.claps || 0) + (blogLikes[selectedArticle.id] ? 1 : 0)}
+          isLiked={!!blogLikes[selectedArticle.id]}
+          onLike={handleLikeArticle}
+          isBookmarked={blogBookmarks.includes(selectedArticle.id)}
+          onBookmark={handleBookmarkArticle}
+          allPosts={blogPosts}
+          onSelectArticle={handleOpenArticle}
+          triggerToast={triggerToast}
+          playClickSound={playClickSound}
+        />
+      )}
+
+      {/* ================= DYNAMIC BLOG EDITOR MODAL ================= */}
+      <BlogEditorModal
+        isOpen={isBlogEditorOpen}
+        onClose={() => setIsBlogEditorOpen(false)}
+        onSave={handleSaveArticle}
+        editingArticle={editingArticle}
+        triggerToast={triggerToast}
+        playClickSound={playClickSound}
+      />
     </div>
   );
 }
