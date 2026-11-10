@@ -4,6 +4,7 @@ import BlogReaderModal from './components/Blog/BlogReaderModal';
 import BlogEditorModal from './components/Blog/BlogEditorModal';
 import DevLabSection from './components/DevLab/DevLabSection';
 import ProjectEstimator from './components/Estimator/ProjectEstimator';
+import ArchitectureSection from './components/Architecture/ArchitectureSection';
 import KeyboardShortcutsModal from './components/Shortcuts/KeyboardShortcutsModal';
 import {
   loadStoredBlogPosts,
@@ -23,6 +24,7 @@ const navItems = [
   { label: 'Skills', href: '#skills', icon: 'bx-code-alt' },
   { label: 'Experience', href: '#experience', icon: 'bx-briefcase-alt-2' },
   { label: 'Projects', href: '#portfolio', icon: 'bx-layer' },
+  { label: 'Architecture', href: '#architecture', icon: 'bx-network-chart' },
   { label: 'Dev Lab', href: '#devlab', icon: 'bx-terminal' },
   { label: 'Estimator', href: '#estimator', icon: 'bx-calculator' },
   { label: 'Testimonials', href: '#testimonials', icon: 'bx-chat' },
@@ -2251,6 +2253,9 @@ function App() {
             </a>
           </div>
         </section>
+
+        {/* ================= ENTERPRISE SYSTEM ARCHITECTURE BLUEPRINT ================= */}
+        <ArchitectureSection triggerToast={triggerToast} playClickSound={playClickSound} />
 
         {/* ================= DEV LAB & REST API CONSOLE ================= */}
         <DevLabSection triggerToast={triggerToast} playClickSound={playClickSound} />
