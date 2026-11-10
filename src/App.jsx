@@ -5,6 +5,11 @@ import BlogEditorModal from './components/Blog/BlogEditorModal';
 import DevLabSection from './components/DevLab/DevLabSection';
 import ProjectEstimator from './components/Estimator/ProjectEstimator';
 import ArchitectureSection from './components/Architecture/ArchitectureSection';
+import GitHubSection from './components/GitHub/GitHubSection';
+import TechRadarSection from './components/TechRadar/TechRadarSection';
+import InterviewQASection from './components/InterviewQA/InterviewQASection';
+import ResumeCustomizerModal from './components/Resume/ResumeCustomizerModal';
+import AudioSoundscapeModal from './components/Audio/AudioSoundscapeModal';
 import KeyboardShortcutsModal from './components/Shortcuts/KeyboardShortcutsModal';
 import {
   loadStoredBlogPosts,
@@ -27,7 +32,9 @@ const navItems = [
   { label: 'Architecture', href: '#architecture', icon: 'bx-network-chart' },
   { label: 'Dev Lab', href: '#devlab', icon: 'bx-terminal' },
   { label: 'Estimator', href: '#estimator', icon: 'bx-calculator' },
-  { label: 'Testimonials', href: '#testimonials', icon: 'bx-chat' },
+  { label: 'Radar', href: '#tech-radar', icon: 'bx-radar' },
+  { label: 'GitHub', href: '#github', icon: 'bxl-github' },
+  { label: 'Q&A', href: '#qa', icon: 'bx-help-circle' },
   { label: 'Certificates', href: '#certifications', icon: 'bx-award' },
   { label: 'Blog', href: '#blog', icon: 'bx-news' },
   { label: 'Contact', href: '#contact', icon: 'bx-envelope' },
@@ -456,6 +463,8 @@ function App() {
   const [isBlogEditorOpen, setIsBlogEditorOpen] = useState(false);
   const [editingArticle, setEditingArticle] = useState(null);
   const [shortcutsModalOpen, setShortcutsModalOpen] = useState(false);
+  const [resumeCustomizerOpen, setResumeCustomizerOpen] = useState(false);
+  const [soundscapeOpen, setSoundscapeOpen] = useState(false);
   const [contactMessage, setContactMessage] = useState('');
 
   // Contact & Newsletter Status
@@ -628,10 +637,18 @@ function App() {
         window.location.hash = '#blog';
       } else if (e.key === 'p' || e.key === 'P') {
         window.location.hash = '#portfolio';
+      } else if (e.key === 'a' || e.key === 'A') {
+        window.location.hash = '#architecture';
       } else if (e.key === 'd' || e.key === 'D') {
         window.location.hash = '#devlab';
       } else if (e.key === 'e' || e.key === 'E') {
         window.location.hash = '#estimator';
+      } else if (e.key === 'r' || e.key === 'R') {
+        window.location.hash = '#tech-radar';
+      } else if (e.key === 'g' || e.key === 'G') {
+        window.location.hash = '#github';
+      } else if (e.key === 'q' || e.key === 'Q') {
+        window.location.hash = '#qa';
       } else if (e.key === 'c' || e.key === 'C') {
         window.location.hash = '#contact';
       } else if (e.key === 's' || e.key === 'S') {
@@ -953,8 +970,34 @@ function App() {
       case 'help':
         newHistory.push({
           type: 'output',
-          text: 'Available Commands: whoami, skills, projects, devlab, estimator, experience, contact, resume, blog, shortcuts, clear, accent [emerald|cyan|violet|amber]',
+          text: 'Available Commands: whoami, skills, projects, architecture, devlab, estimator, radar, github, qa, blog, resume, resume custom, soundscape, shortcuts, clear, accent [emerald|cyan|violet|amber]',
         });
+        break;
+      case 'architecture':
+        window.location.hash = '#architecture';
+        newHistory.push({ type: 'output', text: 'Navigating to Enterprise Architecture Blueprint...' });
+        break;
+      case 'radar':
+        window.location.hash = '#tech-radar';
+        newHistory.push({ type: 'output', text: 'Navigating to Production Tech Radar...' });
+        break;
+      case 'github':
+        window.location.hash = '#github';
+        newHistory.push({ type: 'output', text: 'Navigating to Live GitHub Pulse...' });
+        break;
+      case 'qa':
+      case 'interview':
+        window.location.hash = '#qa';
+        newHistory.push({ type: 'output', text: 'Navigating to Technical Interview Q&A...' });
+        break;
+      case 'resume custom':
+        setResumeCustomizerOpen(true);
+        newHistory.push({ type: 'output', text: 'Opening Interactive Resume Customizer...' });
+        break;
+      case 'soundscape':
+      case 'synth':
+        setSoundscapeOpen(true);
+        newHistory.push({ type: 'output', text: 'Opening Focus Soundscape Synthesizer...' });
         break;
       case 'devlab':
       case 'api':
@@ -1138,12 +1181,18 @@ function App() {
       { label: 'Jump to Technical Skills', category: 'Navigation', icon: 'bx-code-alt', action: () => (window.location.hash = '#skills') },
       { label: 'Jump to Work Experience', category: 'Navigation', icon: 'bx-briefcase-alt-2', action: () => (window.location.hash = '#experience') },
       { label: 'Jump to Projects & Portfolio', category: 'Navigation', icon: 'bx-layer', action: () => (window.location.hash = '#portfolio') },
+      { label: 'Jump to System Architecture Blueprint', category: 'Navigation', icon: 'bx-network-chart', action: () => (window.location.hash = '#architecture') },
       { label: 'Jump to Dev Lab API Console', category: 'Navigation', icon: 'bx-terminal', action: () => (window.location.hash = '#devlab') },
       { label: 'Jump to Project Scope Estimator', category: 'Navigation', icon: 'bx-calculator', action: () => (window.location.hash = '#estimator') },
+      { label: 'Jump to Production Tech Radar', category: 'Navigation', icon: 'bx-radar', action: () => (window.location.hash = '#tech-radar') },
+      { label: 'Jump to Live GitHub Pulse', category: 'Navigation', icon: 'bxl-github', action: () => (window.location.hash = '#github') },
+      { label: 'Jump to Technical Interview Q&A', category: 'Navigation', icon: 'bx-help-circle', action: () => (window.location.hash = '#qa') },
       { label: 'Jump to Testimonials', category: 'Navigation', icon: 'bx-chat', action: () => (window.location.hash = '#testimonials') },
       { label: 'Jump to Certifications', category: 'Navigation', icon: 'bx-award', action: () => (window.location.hash = '#certifications') },
       { label: 'Jump to Technical Blog', category: 'Navigation', icon: 'bx-news', action: () => (window.location.hash = '#blog') },
       { label: 'Jump to Contact', category: 'Navigation', icon: 'bx-envelope', action: () => (window.location.hash = '#contact') },
+      { label: 'Customize & Print Resume (Role Tailor)', category: 'Actions', icon: 'bx-printer', action: () => setResumeCustomizerOpen(true) },
+      { label: 'Focus Soundscape Synthesizer', category: 'Actions', icon: 'bx-headphone', action: () => setSoundscapeOpen(true) },
       { label: 'Show Keyboard Shortcuts HUD (?)', category: 'Help', icon: 'bx-command', action: () => setShortcutsModalOpen(true) },
       { label: 'Download Resume (PDF)', category: 'Actions', icon: 'bx-download', action: () => window.open(`${BASE_URL}assets/last_last_professional_resume.pdf`, '_blank') },
       { label: 'Copy Email Address (dabasaborifan@gmail.com)', category: 'Actions', icon: 'bx-copy', action: () => copyToClipboard('dabasaborifan@gmail.com', 'cmd-email', 'email') },
@@ -1387,6 +1436,19 @@ function App() {
               ?
             </button>
 
+            {/* Focus Soundscape Synthesizer Toggle */}
+            <button
+              type="button"
+              onClick={() => {
+                playClickSound();
+                setSoundscapeOpen(true);
+              }}
+              title="Focus Soundscape Synthesizer"
+              className="hidden sm:inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-lg text-slate-300 transition hover:bg-white/10 hover:text-accent"
+            >
+              <i className="bx bx-headphone" />
+            </button>
+
             {/* Mobile Hamburger Toggle */}
             <button
               type="button"
@@ -1493,6 +1555,18 @@ function App() {
                   <i className="bx bx-download text-lg text-accent" />
                   <span>Download CV</span>
                 </a>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    playClickSound();
+                    setResumeCustomizerOpen(true);
+                  }}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3.5 text-sm font-semibold text-slate-200 backdrop-blur transition hover:bg-white/10 hover:border-accent"
+                >
+                  <i className="bx bx-slider-alt text-lg text-accent" />
+                  <span>Customize CV</span>
+                </button>
 
                 <button
                   type="button"
@@ -2267,6 +2341,15 @@ function App() {
           playClickSound={playClickSound}
         />
 
+        {/* ================= PRODUCTION TECH RADAR ================= */}
+        <TechRadarSection triggerToast={triggerToast} playClickSound={playClickSound} />
+
+        {/* ================= LIVE GITHUB PULSE ================= */}
+        <GitHubSection triggerToast={triggerToast} playClickSound={playClickSound} />
+
+        {/* ================= TECHNICAL INTERVIEW Q&A ================= */}
+        <InterviewQASection triggerToast={triggerToast} playClickSound={playClickSound} />
+
         {/* ================= TESTIMONIALS & ENDORSEMENTS ================= */}
         <SectionTitle eyebrow="Endorsements" title="Client & Colleague Praise" />
         <section id="testimonials" className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
@@ -2827,6 +2910,21 @@ function App() {
       <KeyboardShortcutsModal
         isOpen={shortcutsModalOpen}
         onClose={() => setShortcutsModalOpen(false)}
+      />
+
+      {/* ================= RESUME CUSTOMIZER MODAL ================= */}
+      <ResumeCustomizerModal
+        isOpen={resumeCustomizerOpen}
+        onClose={() => setResumeCustomizerOpen(false)}
+        triggerToast={triggerToast}
+        playClickSound={playClickSound}
+      />
+
+      {/* ================= AUDIO SOUNDSCAPE SYNTHESIZER MODAL ================= */}
+      <AudioSoundscapeModal
+        isOpen={soundscapeOpen}
+        onClose={() => setSoundscapeOpen(false)}
+        triggerToast={triggerToast}
       />
     </div>
   );
